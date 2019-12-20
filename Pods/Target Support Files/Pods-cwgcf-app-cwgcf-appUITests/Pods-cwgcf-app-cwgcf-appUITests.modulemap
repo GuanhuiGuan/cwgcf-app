@@ -1,0 +1,6 @@
+framework module Pods_cwgcf_app_cwgcf_appUITests {
+  umbrella header "Pods-cwgcf-app-cwgcf-appUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
