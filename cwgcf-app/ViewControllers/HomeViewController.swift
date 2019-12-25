@@ -20,9 +20,19 @@ class HomeViewController: VCWithScroll {
         v.isPagingEnabled = true
         v.backgroundColor = ghostWhite
         v.register(TopBannerCell.self, forCellWithReuseIdentifier: TopBannerCell.ID)
+        v.showsHorizontalScrollIndicator = false
         v.dataSource = self
         v.delegate = self
         return v
+    }()
+    
+    lazy var topBannerPageCtrl : UIPageControl = {
+        let res = UIPageControl()
+        res.translatesAutoresizingMaskIntoConstraints = false
+        res.currentPage = 0
+        res.pageIndicatorTintColor = .lightGray
+        res.currentPageIndicatorTintColor = darkRed
+        return res
     }()
 
     override func viewDidLoad() {
@@ -31,8 +41,11 @@ class HomeViewController: VCWithScroll {
         getTopBannerContents()
         
         containerView.addSubview(topBanner)
+        containerView.addSubview(topBannerPageCtrl)
         getTopBannerContents()
         setTopBannerConstraints()
+        topBannerAutoScrollTimer(5)
+        topBannerPageCtrl.numberOfPages = topBannerContents.count
         
         setupBGAndScroll(enMap["home_title"] ?? "Home")
         
@@ -45,8 +58,9 @@ class HomeViewController: VCWithScroll {
 extension HomeViewController {
     private func getTopBannerContents() {
         topBannerContents = [
-            "london_buildings",
-            "london_view_0",
+            "cwgcf_ad_banner_0",
+            "cwgcf_ad_banner_1",
+            "cwgcf_ad_banner_2",
         ]
     }
     
@@ -56,8 +70,34 @@ extension HomeViewController {
             topBanner.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
             topBanner.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
             topBanner.heightAnchor.constraint(equalToConstant: topBannerHeight),
+            
+            topBannerPageCtrl.bottomAnchor.constraint(equalTo: topBanner.bottomAnchor, constant: -10),
+            topBannerPageCtrl.centerXAnchor.constraint(equalTo: topBanner.centerXAnchor, constant: 0),
+            topBannerPageCtrl.widthAnchor.constraint(equalToConstant: 200),
+            topBannerPageCtrl.heightAnchor.constraint(equalToConstant: 20),
         ])
         updateContentSize(topBannerHeight)
+    }
+    
+    private func topBannerAutoScrollTimer(_ timeInterval: Double) {
+        Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(autoScroll(_:)), userInfo: nil, repeats: true)
+    }
+    
+    @objc
+    private func autoScroll(_ timer : Timer) {
+        for cell in topBanner.visibleCells {
+            let indexPath = topBanner.indexPath(for: cell)
+            if indexPath!.row < topBannerContents.count - 1 {
+                let nextIndex = IndexPath.init(row: indexPath!.row + 1, section: indexPath!.section)
+                topBanner.scrollToItem(at: nextIndex, at: .right, animated: true)
+                topBannerPageCtrl.currentPage = nextIndex.row
+            }
+            else {
+                let nextIndex = IndexPath.init(row: 0, section: indexPath!.section)
+                topBanner.scrollToItem(at: nextIndex, at: .left, animated: true)
+                topBannerPageCtrl.currentPage = nextIndex.row
+            }
+        }
     }
 }
 
@@ -115,5 +155,12 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         }
         return UIEdgeInsets.zero
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == topBanner {
+            let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+            topBannerPageCtrl.currentPage = Int(pageNumber)
+        }
     }
 }

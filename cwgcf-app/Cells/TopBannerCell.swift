@@ -18,6 +18,7 @@ class TopBannerCell : UICollectionViewCell {
         let v = UIImageView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.contentMode = .scaleAspectFill
+        v.layer.masksToBounds = true
         return v
     }()
     

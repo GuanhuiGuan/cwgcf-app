@@ -9,4 +9,4 @@
 import Foundation
 import UIKit
 
-let topBannerHeight : CGFloat = 250
+let topBannerHeight : CGFloat = 200
