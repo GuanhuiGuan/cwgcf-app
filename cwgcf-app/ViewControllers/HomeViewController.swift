@@ -35,11 +35,15 @@ class HomeViewController: VCWithScroll {
         return res
     }()
     
+    var locationLabel : UILabel!
+    var dateLabel : UILabel!
+    
     lazy var titleView : UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = ghostWhite
         
-        let locationLabel = UILabel()
+        locationLabel = UILabel()
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         locationLabel.text = enMap["event_location"]
         locationLabel.numberOfLines = 0
@@ -52,7 +56,7 @@ class HomeViewController: VCWithScroll {
             locationLabel.widthAnchor.constraint(equalToConstant: 300),
         ])
         
-        let dateLabel = UILabel()
+        dateLabel = UILabel()
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.text = enMap["event_dates"]
         dateLabel.numberOfLines = 0
@@ -83,8 +87,6 @@ class HomeViewController: VCWithScroll {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getTopBannerContents()
         
         containerView.addSubview(topBanner)
         containerView.addSubview(topBannerPageCtrl)
@@ -157,6 +159,7 @@ extension HomeViewController {
             titleView.topAnchor.constraint(equalTo: topBanner.bottomAnchor, constant: 0),
             titleView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
             titleView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
+            titleView.bottomAnchor.constraint(equalTo: dateLabel!.bottomAnchor, constant: 15)
         ])
         updateContentSize(titleView.frame.height)
     }

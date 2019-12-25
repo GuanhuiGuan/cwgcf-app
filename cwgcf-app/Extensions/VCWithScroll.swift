@@ -24,7 +24,7 @@ class VCWithScroll : UIViewController {
     }()
     
     func setupBGAndScroll(_ title:String) {
-        view.backgroundColor = ghostWhite
+        view.backgroundColor = .systemGray5
         self.navigationItem.title = title
         
         view.addSubview(scrollView)
