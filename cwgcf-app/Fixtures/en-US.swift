@@ -10,4 +10,7 @@ import Foundation
 
 let enMap : [String:String] = [
     "home_title" : "Home",
+    "event_name": "10th CWGCF & 4th WCGOCY",
+    "event_location": "Olympia Convention and Exhibition Centre, London",
+    "event_dates": "18 Oct, 2020 - 20 Oct, 2020",
 ]

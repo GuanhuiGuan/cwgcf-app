@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-let ghostWhite = UIColor(red: 97, green: 97, blue: 100, alpha: 1)
+let ghostWhite = UIColor(red: 0.97, green: 0.97, blue: 1, alpha: 1)
 
-let darkRed = UIColor(hue: 358, saturation: 93, brightness: 62, alpha: 1)
+let darkRed = UIColor(red: 0.545, green: 0, blue: 0, alpha: 1)

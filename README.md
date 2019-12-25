@@ -4,12 +4,18 @@
 
 ## To Develop
 
-- Time
-- Address
-- Contacts
-- Schedule
-- Guests
-- Photos
-- Ad banner
-- Cooperation
-- Forum
+- Home (P0)
+    - Ad banner (Done)
+    - Time (Done)
+    - Address (Done)
+    - Schedule
+    - Guests
+    - Photos
+- Forum (P1)
+    - Login
+    - Signup
+    - Home table
+    - Thread table
+- Contacts (P0)
+    - Info
+    - Cooperation

@@ -34,6 +34,52 @@ class HomeViewController: VCWithScroll {
         res.currentPageIndicatorTintColor = darkRed
         return res
     }()
+    
+    lazy var titleView : UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        
+        let locationLabel = UILabel()
+        locationLabel.translatesAutoresizingMaskIntoConstraints = false
+        locationLabel.text = enMap["event_location"]
+        locationLabel.numberOfLines = 0
+        locationLabel.font = UIFont.systemFont(ofSize: 20)
+        locationLabel.textColor = .darkGray
+        v.addSubview(locationLabel)
+        NSLayoutConstraint.activate([
+            locationLabel.topAnchor.constraint(equalTo: v.topAnchor, constant: 20),
+            locationLabel.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 20),
+            locationLabel.widthAnchor.constraint(equalToConstant: 300),
+        ])
+        
+        let dateLabel = UILabel()
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.text = enMap["event_dates"]
+        dateLabel.numberOfLines = 0
+        dateLabel.font = UIFont.systemFont(ofSize: 16)
+        dateLabel.textColor = .lightGray
+        v.addSubview(dateLabel)
+        NSLayoutConstraint.activate([
+            dateLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 10),
+            dateLabel.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 20),
+            dateLabel.widthAnchor.constraint(equalToConstant: 300),
+        ])
+        
+        let iconView = UIImageView()
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        iconView.image = UIImage(systemName: "calendar.circle")
+        iconView.contentMode = .scaleAspectFill
+        iconView.tintColor = darkRed
+        v.addSubview(iconView)
+        NSLayoutConstraint.activate([
+            iconView.centerYAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: -5),
+            iconView.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: -20),
+            iconView.heightAnchor.constraint(equalToConstant: 60),
+            iconView.widthAnchor.constraint(equalToConstant: 60),
+        ])
+        
+        return v
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +92,9 @@ class HomeViewController: VCWithScroll {
         setTopBannerConstraints()
         topBannerAutoScrollTimer(5)
         topBannerPageCtrl.numberOfPages = topBannerContents.count
+        
+        containerView.addSubview(titleView)
+        setTitleConstraints()
         
         setupBGAndScroll(enMap["home_title"] ?? "Home")
         
@@ -98,6 +147,18 @@ extension HomeViewController {
                 topBannerPageCtrl.currentPage = nextIndex.row
             }
         }
+    }
+}
+
+// * MARK * title
+extension HomeViewController {
+    private func setTitleConstraints() {
+        NSLayoutConstraint.activate([
+            titleView.topAnchor.constraint(equalTo: topBanner.bottomAnchor, constant: 0),
+            titleView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            titleView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
+        ])
+        updateContentSize(titleView.frame.height)
     }
 }
 
