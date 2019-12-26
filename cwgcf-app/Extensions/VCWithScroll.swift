@@ -31,6 +31,12 @@ class VCWithScroll : UIViewController {
         scrollView.addSubview(containerView)
     }
     
+    func updateContentSize(_ addedView:UIView) {
+        containerView.setNeedsLayout()
+        containerView.layoutIfNeeded()
+        updateContentSize(addedView.frame.height)
+    }
+    
     func updateContentSize(_ addedHeight:CGFloat) {
         contentSize.height += addedHeight
         scrollView.contentSize = contentSize

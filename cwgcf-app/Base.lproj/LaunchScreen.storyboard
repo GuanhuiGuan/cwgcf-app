@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="wgcec-logo" translatesAutoresizingMaskIntoConstraints="NO" id="wWd-XA-Cea">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="cwgcf_logo" translatesAutoresizingMaskIntoConstraints="NO" id="wWd-XA-Cea">
                                 <rect key="frame" x="127" y="368" width="161" height="161"/>
                             </imageView>
                         </subviews>
@@ -35,6 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="wgcec-logo" width="1000" height="1000"/>
+        <image name="cwgcf_logo" width="1000" height="1000"/>
     </resources>
 </document>

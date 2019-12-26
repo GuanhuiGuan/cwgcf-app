@@ -84,6 +84,131 @@ class HomeViewController: VCWithScroll {
         
         return v
     }()
+    
+    lazy var attendeesPaletteView : UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        
+        let imgLeft = UIImageView()
+        v.addSubview(imgLeft)
+        imgLeft.translatesAutoresizingMaskIntoConstraints = false
+        imgLeft.image = UIImage(named: "bill_gates")
+        imgLeft.contentMode = .scaleAspectFill
+        imgLeft.layer.masksToBounds = true
+        
+        let imgTopRight = UIImageView()
+        v.addSubview(imgTopRight)
+        imgTopRight.translatesAutoresizingMaskIntoConstraints = false
+        imgTopRight.image = UIImage(named: "dara_k")
+        imgTopRight.contentMode = .scaleAspectFill
+        imgTopRight.layer.masksToBounds = true
+        
+        let imgBotRight = UIImageView()
+        v.addSubview(imgBotRight)
+        imgBotRight.translatesAutoresizingMaskIntoConstraints = false
+        imgBotRight.image = UIImage(named: "zhang_yiming")
+        imgBotRight.contentMode = .scaleAspectFill
+        imgBotRight.layer.masksToBounds = true
+        
+        let imgCenterBg = UIView()
+        v.addSubview(imgCenterBg)
+        imgCenterBg.translatesAutoresizingMaskIntoConstraints = false
+        imgCenterBg.backgroundColor = ghostWhite
+        imgCenterBg.layer.cornerRadius = 55
+        
+        let imgCenter = UIImageView()
+        imgCenterBg.addSubview(imgCenter)
+        imgCenter.translatesAutoresizingMaskIntoConstraints = false
+        imgCenter.image = UIImage(named: "steve_jobs")
+        imgCenter.contentMode = .scaleAspectFill
+        imgCenter.layer.cornerRadius = 50
+        imgCenter.layer.masksToBounds = true
+        
+        NSLayoutConstraint.activate([
+            imgLeft.topAnchor.constraint(equalTo: v.topAnchor, constant: 0),
+            imgLeft.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 0),
+            imgLeft.bottomAnchor.constraint(equalTo: v.bottomAnchor, constant: 0),
+            imgLeft.trailingAnchor.constraint(equalTo: v.centerXAnchor, constant: -2.5),
+            
+            imgTopRight.topAnchor.constraint(equalTo: v.topAnchor, constant: 0),
+            imgTopRight.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: 0),
+            imgTopRight.leadingAnchor.constraint(equalTo: v.centerXAnchor, constant: 2.5),
+            imgTopRight.bottomAnchor.constraint(equalTo: v.centerYAnchor, constant: -2.5),
+            
+            imgBotRight.topAnchor.constraint(equalTo: v.centerYAnchor, constant: 2.5),
+            imgBotRight.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: 0),
+            imgBotRight.leadingAnchor.constraint(equalTo: v.centerXAnchor, constant: 2.5),
+            imgBotRight.bottomAnchor.constraint(equalTo: v.bottomAnchor, constant: 0),
+            
+            imgCenterBg.centerXAnchor.constraint(equalTo: v.centerXAnchor, constant: 0),
+            imgCenterBg.centerYAnchor.constraint(equalTo: v.centerYAnchor, constant: 0),
+            imgCenterBg.widthAnchor.constraint(equalToConstant: 110),
+            imgCenterBg.heightAnchor.constraint(equalToConstant: 110),
+            
+            imgCenter.centerXAnchor.constraint(equalTo: imgCenterBg.centerXAnchor, constant: 0),
+            imgCenter.centerYAnchor.constraint(equalTo: imgCenterBg.centerYAnchor, constant: 0),
+            imgCenter.widthAnchor.constraint(equalToConstant: 100),
+            imgCenter.heightAnchor.constraint(equalToConstant: 100),
+        ])
+        
+        return v
+    }()
+    
+    lazy var attendeesView : UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = ghostWhite
+        
+        let title = UILabel()
+        v.addSubview(title)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.text = enMap["attendees_title"]
+        title.numberOfLines = 0
+        title.font = UIFont.boldSystemFont(ofSize: 26)
+        title.textColor = .darkGray
+        NSLayoutConstraint.activate([
+            title.topAnchor.constraint(equalTo: v.topAnchor, constant: 20),
+            title.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 20),
+            title.widthAnchor.constraint(equalToConstant: 300),
+        ])
+        
+        let subtitle = UILabel()
+        v.addSubview(subtitle)
+        subtitle.translatesAutoresizingMaskIntoConstraints = false
+        subtitle.text = enMap["attendees_subtitle"]
+        subtitle.numberOfLines = 0
+        subtitle.font = UIFont.systemFont(ofSize: 16)
+        subtitle.textColor = .lightGray
+        NSLayoutConstraint.activate([
+            subtitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5),
+            subtitle.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 20),
+            subtitle.widthAnchor.constraint(equalToConstant: 300),
+        ])
+        
+        let icon = UIImageView()
+        v.addSubview(icon)
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.image = UIImage(systemName: "person.2.square.stack")
+        icon.contentMode = .scaleAspectFill
+        icon.tintColor = darkRed
+        NSLayoutConstraint.activate([
+            icon.centerYAnchor.constraint(equalTo: title.bottomAnchor, constant: 0),
+            icon.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: -20),
+            icon.widthAnchor.constraint(equalToConstant: 60),
+            icon.heightAnchor.constraint(equalToConstant: 60),
+        ])
+        
+        v.addSubview(attendeesPaletteView)
+        NSLayoutConstraint.activate([
+            attendeesPaletteView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 20),
+            attendeesPaletteView.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 20),
+            attendeesPaletteView.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: -20),
+            attendeesPaletteView.heightAnchor.constraint(equalToConstant: 200),
+            attendeesPaletteView.bottomAnchor.constraint(equalTo: v.bottomAnchor, constant: -20),
+        ])
+        
+        return v
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,9 +223,35 @@ class HomeViewController: VCWithScroll {
         containerView.addSubview(titleView)
         setTitleConstraints()
         
-        setupBGAndScroll(enMap["home_title"] ?? "Home")
+        containerView.addSubview(attendeesView)
+        setAttendeesConstraints()
         
-        // updateContentSize(1000)
+        setupBGAndScroll(enMap["home_title"] ?? "Home")
+    }
+}
+
+// * MARK * title
+extension HomeViewController {
+    private func setTitleConstraints() {
+        NSLayoutConstraint.activate([
+            titleView.topAnchor.constraint(equalTo: topBanner.bottomAnchor, constant: 0),
+            titleView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            titleView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
+            titleView.bottomAnchor.constraint(equalTo: dateLabel!.bottomAnchor, constant: 15)
+        ])
+        updateContentSize(titleView)
+    }
+}
+
+// * MARK * Attendees
+extension HomeViewController {
+    private func setAttendeesConstraints() {
+        NSLayoutConstraint.activate([
+            attendeesView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 10),
+            attendeesView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            attendeesView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
+        ])
+        updateContentSize(attendeesView)
     }
 }
 
@@ -149,19 +300,6 @@ extension HomeViewController {
                 topBannerPageCtrl.currentPage = nextIndex.row
             }
         }
-    }
-}
-
-// * MARK * title
-extension HomeViewController {
-    private func setTitleConstraints() {
-        NSLayoutConstraint.activate([
-            titleView.topAnchor.constraint(equalTo: topBanner.bottomAnchor, constant: 0),
-            titleView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
-            titleView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
-            titleView.bottomAnchor.constraint(equalTo: dateLabel!.bottomAnchor, constant: 15)
-        ])
-        updateContentSize(titleView.frame.height)
     }
 }
 
