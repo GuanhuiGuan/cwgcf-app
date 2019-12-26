@@ -10,3 +10,5 @@ import Foundation
 import UIKit
 
 let topBannerHeight : CGFloat = 200
+
+let profileAvatarRadius : CGFloat = 40

@@ -252,6 +252,16 @@ extension HomeViewController {
             attendeesView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
         ])
         updateContentSize(attendeesView)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapAttendees(_:)))
+        attendeesView.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    private func tapAttendees(_ sender: Any) {
+        let vc = AttendeesViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
