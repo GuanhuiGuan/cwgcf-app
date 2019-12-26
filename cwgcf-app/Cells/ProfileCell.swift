@@ -67,11 +67,11 @@ class ProfileCell: UITableViewCell {
             
             nameView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             nameView.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 30),
-            nameView.widthAnchor.constraint(equalToConstant: 300),
+            nameView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
             titleView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 10),
             titleView.centerXAnchor.constraint(equalTo: nameView.centerXAnchor, constant: 0),
-            titleView.widthAnchor.constraint(equalToConstant: 300),
+            titleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             titleView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             
             bottomBorder.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),

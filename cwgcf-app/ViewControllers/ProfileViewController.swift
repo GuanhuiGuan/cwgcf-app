@@ -85,9 +85,9 @@ class ProfileViewController : VCWithScroll {
             titleView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 15),
             titleView.widthAnchor.constraint(equalToConstant: 350),
             
-            descriptionView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: 0),
             descriptionView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 20),
-            descriptionView.widthAnchor.constraint(equalToConstant: 350),
+            descriptionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 40),
+            descriptionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -40),
         ])
         
         updateContentSize(30 + 30 + 15 + 20)
