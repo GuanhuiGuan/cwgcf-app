@@ -86,14 +86,15 @@ class ProfileCell: UITableViewCell {
     }
     
     func setCell() {
-        let img = UIImage(named: profile.AvatarUrl)
-        if img == nil {
-            avatarView.image = UIImage(systemName: "person.crop.circle")
-            avatarView.tintColor = darkRed
-        }
-        else {
-            avatarView.image = img
-        }
+//        let img = UIImage(named: profile.AvatarUrl)
+//        if img == nil {
+//            avatarView.image = UIImage(systemName: "person.crop.circle")
+//            avatarView.tintColor = darkRed
+//        }
+//        else {
+//            avatarView.image = img
+//        }
+        profile.SetImageWithDefault(avatarView)
         nameView.text = profile.Name
         titleView.text = profile.Title
     }

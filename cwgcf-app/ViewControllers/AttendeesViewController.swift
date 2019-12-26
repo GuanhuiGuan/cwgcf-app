@@ -37,12 +37,11 @@ class AttendeesViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-//        let chatVC = ChatLogViewController()
-//        chatVC.roomMeta = rooms[indexPath.row]
-//        chatVC.modalPresentationStyle = .fullScreen
-//        chatVC.hidesBottomBarWhenPushed = true
-//
-//        self.navigationController?.pushViewController(chatVC, animated: true)
+        let vc = ProfileViewController()
+        vc.profile = profiles[indexPath.row]
+        vc.modalPresentationStyle = .fullScreen
+//        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func loadCells() {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Profile {
     var ID : String = ""
@@ -25,5 +26,16 @@ class Profile {
         Title = title.isEmpty ? "Attendee" : title
         AvatarUrl = avatarUrl
         Description = description.isEmpty ? "No description" : description
+    }
+    
+    func SetImageWithDefault(_ imgView: UIImageView) {
+        let img = UIImage(named: AvatarUrl)
+        if img == nil {
+            imgView.image = UIImage(systemName: "person.crop.circle")
+            imgView.tintColor = darkRed
+        }
+        else {
+            imgView.image = img
+        }
     }
 }
