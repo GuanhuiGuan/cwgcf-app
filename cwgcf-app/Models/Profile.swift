@@ -29,8 +29,13 @@ class Profile : Codable {
     }
     
     func SetImageWithDefault(_ imgView: UIImageView) {
-        // imgView.load(urlStr: avatarUrl)
-        imgView.loadLocal(avatarUrl)
+        if saveS3Data {
+            // Fetch img data locally
+            imgView.loadLocal(avatarUrl, defaultImg: UIImage(systemName: "person.crop.circle")!, defaultTint: darkRed)
+        } else {
+            // Fetch img data from S3
+            imgView.load(urlStr: avatarUrl, defaultImg: UIImage(systemName: "person.crop.circle")!, defaultTint: darkRed)
+        }
     }
     
     func getName() -> String {

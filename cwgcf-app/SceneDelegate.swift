@@ -8,6 +8,8 @@
 
 import UIKit
 
+var saveS3Data : Bool = true
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?

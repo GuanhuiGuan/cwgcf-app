@@ -10,32 +10,35 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    func load(urlStr: String) {
-        let url = URL(fileURLWithPath: urlStr)
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-                else {
-                    self?.image = UIImage(systemName: "person.crop.circle")
-                    self?.tintColor = darkRed
-                }
+    func load(urlStr: String, defaultImg: UIImage, defaultTint: UIColor) {
+        guard let imageURL = URL(string: urlStr) else {
+            loadImageWithTint(img: defaultImg, tint: defaultTint)
+            return
+        }
+
+        DispatchQueue.global().async {
+            guard let imageData = try? Data(contentsOf: imageURL) else {
+                self.loadImageWithTint(img: defaultImg, tint: defaultTint)
+                return
             }
-            else {
-                self?.image = UIImage(systemName: "person.crop.circle")
-                self?.tintColor = darkRed
+
+            let image = UIImage(data: imageData)
+            DispatchQueue.main.async {
+                self.image = image
             }
         }
     }
     
-    func loadLocal(_ urlStr: String) {
+    func loadImageWithTint(img: UIImage, tint: UIColor) {
+        self.image = img
+        self.tintColor = tint
+    }
+    
+    func loadLocal(_ urlStr: String, defaultImg: UIImage, defaultTint: UIColor) {
         let img = UIImage(named: urlStr)
         if img == nil {
-            self.image = UIImage(systemName: "person.crop.circle")
-            self.tintColor = darkRed
+            self.image = defaultImg
+            self.tintColor = defaultTint
         }
         else {
             self.image = img
