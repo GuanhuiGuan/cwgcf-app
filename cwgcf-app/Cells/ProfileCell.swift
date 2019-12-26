@@ -10,9 +10,9 @@ import UIKit
 
 class ProfileCell: UITableViewCell {
     
-    lazy var content: CellContent = {
-        let cc = CellContent()
-        return cc
+    lazy var profile: Profile = {
+        let p = Profile()
+        return p
     }()
     
     lazy var avatarView : UIImageView = {
@@ -86,14 +86,15 @@ class ProfileCell: UITableViewCell {
     }
     
     func setCell() {
-        if content.avatarImage == nil {
+        let img = UIImage(named: profile.AvatarUrl)
+        if img == nil {
             avatarView.image = UIImage(systemName: "person.crop.circle")
             avatarView.tintColor = darkRed
         }
         else {
-            avatarView.image = content.avatarImage
+            avatarView.image = img
         }
-        nameView.text = content.nameStr.isEmpty ? "Anonymous": content.nameStr
-        titleView.text = content.titleStr.isEmpty ? "Attendee": content.titleStr
+        nameView.text = profile.Name
+        titleView.text = profile.Title
     }
 }

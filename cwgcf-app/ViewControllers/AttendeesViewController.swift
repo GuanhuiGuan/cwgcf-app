@@ -11,7 +11,7 @@ import UIKit
 class AttendeesViewController : UITableViewController {
     
     var cellId = "ProfileCell"
-    var contents: [CellContent] = []
+    var profiles: [Profile] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +25,12 @@ class AttendeesViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return contents.count
+        return profiles.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ProfileCell
-        cell.content = contents[indexPath.row]
+        cell.profile = profiles[indexPath.row]
         cell.setCell()
         return cell
     }
@@ -46,15 +46,15 @@ class AttendeesViewController : UITableViewController {
     }
     
     private func loadCells() {
-        contents = [
-            CellContent("steve_jobs", name: "Steve Jobs", title: "Founder of Apple Inc"),
-            CellContent("", name: "John Doe", title: "Student"),
-            CellContent("zhang_yiming", name: "Zhang Yiming", title: "Founder of ByteDance"),
-            CellContent("dara_k", name: "Dara Khosrowshahi", title: "CEO of Uber Technologies"),
-            CellContent("bill_gates", name: "Bill Gates", title: "Founder of Microsoft"),
-            CellContent("", name: "", title: ""),
-            CellContent("", name: "Darth Vader", title: "Sith Lord"),
-            CellContent("", name: "Jane Doe", title: ""),
+        profiles = [
+            enUserDB["000"]!,
+            enUserDB["001"]!,
+            enUserDB["002"]!,
+            enUserDB["003"]!,
+            enUserDB["004"]!,
+            enUserDB["005"]!,
+            enUserDB["006"]!,
+            enUserDB["007"]!,
         ]
     }
 }
