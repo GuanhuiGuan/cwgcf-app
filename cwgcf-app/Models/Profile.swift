@@ -9,33 +9,48 @@
 import Foundation
 import UIKit
 
-class Profile {
-    var ID : String = ""
-    var Name : String = ""
-    var Title : String = ""
-    var AvatarUrl : String = ""
-    var Description : String = ""
+class Profile : Codable {
+    var _id : String = ""
+    var name : String = ""
+    var title : String = ""
+    var avatarUrl : String = ""
+    var description : String = ""
     
     init() {
         
     }
     
     init(_ id:String, name:String, title:String, avatarUrl:String, description:String) {
-        ID = id
-        Name = name.isEmpty ? "Anonymous" : name
-        Title = title.isEmpty ? "Attendee" : title
-        AvatarUrl = avatarUrl
-        Description = description.isEmpty ? "No description" : description
+        _id = id
+        self.name = name.isEmpty ? "Anonymous" : name
+        self.title = title.isEmpty ? "Attendee" : title
+        self.avatarUrl = avatarUrl
+        self.description = description.isEmpty ? "No description" : description
     }
     
     func SetImageWithDefault(_ imgView: UIImageView) {
-        let img = UIImage(named: AvatarUrl)
-        if img == nil {
-            imgView.image = UIImage(systemName: "person.crop.circle")
-            imgView.tintColor = darkRed
+        // imgView.load(urlStr: avatarUrl)
+        imgView.loadLocal(avatarUrl)
+    }
+    
+    func getName() -> String {
+        if name.isEmpty {
+            return "Anonymous"
         }
-        else {
-            imgView.image = img
+        return name
+    }
+    
+    func getTitle() -> String {
+        if title.isEmpty {
+            return "Attendee"
         }
+        return title
+    }
+    
+    func getDescription() -> String {
+        if description.isEmpty {
+            return "No description"
+        }
+        return description
     }
 }

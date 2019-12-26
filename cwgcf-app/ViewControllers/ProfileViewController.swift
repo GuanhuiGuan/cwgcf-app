@@ -61,9 +61,9 @@ class ProfileViewController : VCWithScroll {
     
     private func setConstraints() {
         profile.SetImageWithDefault(avatarView)
-        nameView.text = profile.Name
-        titleView.text = profile.Title
-        descriptionView.text = profile.Description
+        nameView.text = profile.getName()
+        titleView.text = profile.getTitle()
+        descriptionView.text = profile.getDescription()
         
         containerView.addSubview(avatarView)
         containerView.addSubview(nameView)

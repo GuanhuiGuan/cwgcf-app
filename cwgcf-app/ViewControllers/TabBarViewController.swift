@@ -13,6 +13,9 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let client = ProfileAPIClient()
+        client.GetAllProfiles()
+        
         self.viewControllers = [
             setupChildVC(HomeViewController(), title: "Home", tag: 0, iconName: "house"),
             setupChildVC(ForumViewController(), title: "Forum", tag: 1, iconName: "person.3"),

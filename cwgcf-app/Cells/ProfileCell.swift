@@ -95,7 +95,7 @@ class ProfileCell: UITableViewCell {
 //            avatarView.image = img
 //        }
         profile.SetImageWithDefault(avatarView)
-        nameView.text = profile.Name
-        titleView.text = profile.Title
+        nameView.text = profile.getName()
+        titleView.text = profile.getTitle()
     }
 }

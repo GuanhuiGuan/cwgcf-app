@@ -14,13 +14,13 @@ class AttendeesViewController : UITableViewController {
     var profiles: [Profile] = []
     
     override func viewDidLoad() {
+        loadCells()
+        
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
         tableView.register(ProfileCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
         navigationItem.title = "Attendees"
-        
-        loadCells()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,15 +45,19 @@ class AttendeesViewController : UITableViewController {
     }
     
     private func loadCells() {
-        profiles = [
-            enUserDB["000"]!,
-            enUserDB["001"]!,
-            enUserDB["002"]!,
-            enUserDB["003"]!,
-            enUserDB["004"]!,
-            enUserDB["005"]!,
-            enUserDB["006"]!,
-            enUserDB["007"]!,
-        ]
+//        profiles = [
+//            enUserDB["000"]!,
+//            enUserDB["001"]!,
+//            enUserDB["002"]!,
+//            enUserDB["003"]!,
+//            enUserDB["004"]!,
+//            enUserDB["005"]!,
+//            enUserDB["006"]!,
+//            enUserDB["007"]!,
+//        ]
+        
+//        let client = ProfileAPIClient()
+//        client.GetAllProfiles()
+        profiles = cacheProfiles
     }
 }
