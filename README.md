@@ -9,8 +9,8 @@
     - Time (Done)
     - Address (Done)
     - Schedule
-    - Guests
-    - Photos
+    - Guests(Done)
+    - Photos(Done)
 - Forum (P1)
     - Login
     - Signup
@@ -19,3 +19,7 @@
 - Contacts (P0)
     - Info
     - Cooperation
+    
+- Backend(p1)
+    - Deploy api
+    - APIClient reconstruct

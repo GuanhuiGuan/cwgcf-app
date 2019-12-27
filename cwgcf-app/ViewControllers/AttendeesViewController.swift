@@ -11,11 +11,8 @@ import UIKit
 class AttendeesViewController : UITableViewController {
     
     var cellId = "ProfileCell"
-    var profiles: [Profile] = []
     
     override func viewDidLoad() {
-        loadCells()
-        
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
         tableView.register(ProfileCell.self, forCellReuseIdentifier: cellId)
@@ -25,12 +22,12 @@ class AttendeesViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return profiles.count
+        return cacheProfiles.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ProfileCell
-        cell.profile = profiles[indexPath.row]
+        cell.profile = cacheProfiles[indexPath.row]
         cell.setCell()
         return cell
     }
@@ -38,26 +35,15 @@ class AttendeesViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         let vc = ProfileViewController()
-        vc.profile = profiles[indexPath.row]
+        vc.profile = cacheProfiles[indexPath.row]
         vc.modalPresentationStyle = .fullScreen
 //        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func loadCells() {
-//        profiles = [
-//            enUserDB["000"]!,
-//            enUserDB["001"]!,
-//            enUserDB["002"]!,
-//            enUserDB["003"]!,
-//            enUserDB["004"]!,
-//            enUserDB["005"]!,
-//            enUserDB["006"]!,
-//            enUserDB["007"]!,
-//        ]
-        
-//        let client = ProfileAPIClient()
-//        client.GetAllProfiles()
-        profiles = cacheProfiles
+    func loadCells() {
+        let client = ProfileAPIClient()
+        client.GetAllProfiles()
+//        profiles = cacheProfiles
     }
 }

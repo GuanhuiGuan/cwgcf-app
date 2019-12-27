@@ -34,14 +34,14 @@ class PhotosViewController : UITableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: false)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
 //        let vc = ProfileViewController()
 //        vc.profile = cachePhotos[indexPath.row]
 //        vc.modalPresentationStyle = .fullScreen
 ////        vc.hidesBottomBarWhenPushed = true
 //        self.navigationController?.pushViewController(vc, animated: true)
-//    }
+    }
     
     func loadPhotos() {
         let api = PhotoAPIClient()

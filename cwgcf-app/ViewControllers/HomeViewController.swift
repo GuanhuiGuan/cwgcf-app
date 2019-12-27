@@ -311,6 +311,7 @@ extension HomeViewController {
     @objc
     private func tapAttendees(_ sender: Any) {
         let vc = AttendeesViewController()
+        vc.loadCells()
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
