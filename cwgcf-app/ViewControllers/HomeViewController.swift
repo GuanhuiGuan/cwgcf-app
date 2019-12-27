@@ -35,15 +35,12 @@ class HomeViewController: VCWithScroll {
         return res
     }()
     
-    var locationLabel : UILabel!
-    var dateLabel : UILabel!
-    
     lazy var titleView : UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.backgroundColor = ghostWhite
         
-        locationLabel = UILabel()
+        let locationLabel = UILabel()
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         locationLabel.text = enMap["event_location"]
         locationLabel.numberOfLines = 0
@@ -56,7 +53,7 @@ class HomeViewController: VCWithScroll {
             locationLabel.widthAnchor.constraint(equalToConstant: 300),
         ])
         
-        dateLabel = UILabel()
+        let dateLabel = UILabel()
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.text = enMap["event_dates"]
         dateLabel.numberOfLines = 0
@@ -67,19 +64,20 @@ class HomeViewController: VCWithScroll {
             dateLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 10),
             dateLabel.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 20),
             dateLabel.widthAnchor.constraint(equalToConstant: 300),
+            dateLabel.bottomAnchor.constraint(equalTo: v.bottomAnchor, constant: -15)
         ])
         
         let iconView = UIImageView()
         iconView.translatesAutoresizingMaskIntoConstraints = false
-        iconView.image = UIImage(systemName: "calendar.circle")
+        iconView.image = UIImage(systemName: "arrow.right.circle")
         iconView.contentMode = .scaleAspectFill
-        iconView.tintColor = darkRed
+        iconView.tintColor = .lightGray
         v.addSubview(iconView)
         NSLayoutConstraint.activate([
-            iconView.centerYAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: -5),
-            iconView.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: -20),
-            iconView.heightAnchor.constraint(equalToConstant: 60),
-            iconView.widthAnchor.constraint(equalToConstant: 60),
+            iconView.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: -30),
+            iconView.heightAnchor.constraint(equalToConstant: arrowSize),
+            iconView.widthAnchor.constraint(equalToConstant: arrowSize),
+            iconView.centerYAnchor.constraint(equalTo: v.centerYAnchor, constant: 0),
         ])
         
         return v
@@ -193,9 +191,9 @@ class HomeViewController: VCWithScroll {
         icon.tintColor = darkRed
         NSLayoutConstraint.activate([
             icon.centerYAnchor.constraint(equalTo: title.bottomAnchor, constant: 0),
-            icon.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: -20),
-            icon.widthAnchor.constraint(equalToConstant: 60),
-            icon.heightAnchor.constraint(equalToConstant: 60),
+            icon.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: -25),
+            icon.widthAnchor.constraint(equalToConstant: homeIconDiameter),
+            icon.heightAnchor.constraint(equalToConstant: homeIconDiameter),
         ])
         
         v.addSubview(attendeesPaletteView)
@@ -250,9 +248,9 @@ class HomeViewController: VCWithScroll {
         NSLayoutConstraint.activate([
             icon.centerYAnchor.constraint(equalTo: title.bottomAnchor, constant: 0),
             icon.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: -20),
-            icon.widthAnchor.constraint(equalToConstant: 60),
-            icon.heightAnchor.constraint(equalToConstant: 60),
-            icon.bottomAnchor.constraint(equalTo: v.bottomAnchor, constant: -20),
+            icon.widthAnchor.constraint(equalToConstant: homeIconDiameter),
+            icon.heightAnchor.constraint(equalToConstant: homeIconDiameter),
+            icon.bottomAnchor.constraint(equalTo: v.bottomAnchor, constant: -25),
         ])
         
         return v
@@ -288,7 +286,6 @@ extension HomeViewController {
             titleView.topAnchor.constraint(equalTo: topBanner.bottomAnchor, constant: 0),
             titleView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
             titleView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
-            titleView.bottomAnchor.constraint(equalTo: dateLabel!.bottomAnchor, constant: 15)
         ])
         updateContentSize(titleView)
     }

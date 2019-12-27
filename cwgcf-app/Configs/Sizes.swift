@@ -11,5 +11,8 @@ import UIKit
 
 let topBannerHeight : CGFloat = 200
 
-let profileAvatarRadius : CGFloat = 40
+let homeIconDiameter : CGFloat = 40
+let arrowSize : CGFloat = 30
+
+let profileAvatarRadius : CGFloat = 30
 let profileAvatarLargeRadius : CGFloat = 60
