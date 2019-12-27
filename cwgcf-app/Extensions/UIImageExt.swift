@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    func load(urlStr: String, defaultImg: UIImage, defaultTint: UIColor) {
+    func load(_ urlStr: String, defaultImg: UIImage, defaultTint: UIColor) {
         guard let imageURL = URL(string: urlStr) else {
             loadImageWithTint(img: defaultImg, tint: defaultTint)
             return

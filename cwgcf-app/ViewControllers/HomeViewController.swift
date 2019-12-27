@@ -209,6 +209,54 @@ class HomeViewController: VCWithScroll {
         
         return v
     }()
+    
+    lazy var photosView : UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = ghostWhite
+        
+        let title = UILabel()
+        v.addSubview(title)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.text = enMap["photos_title"]
+        title.numberOfLines = 0
+        title.font = UIFont.boldSystemFont(ofSize: 26)
+        title.textColor = .darkGray
+        NSLayoutConstraint.activate([
+            title.topAnchor.constraint(equalTo: v.topAnchor, constant: 20),
+            title.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 20),
+            title.widthAnchor.constraint(equalToConstant: 300),
+        ])
+        
+        let subtitle = UILabel()
+        v.addSubview(subtitle)
+        subtitle.translatesAutoresizingMaskIntoConstraints = false
+        subtitle.text = enMap["photos_subtitle"]
+        subtitle.numberOfLines = 0
+        subtitle.font = UIFont.systemFont(ofSize: 16)
+        subtitle.textColor = .lightGray
+        NSLayoutConstraint.activate([
+            subtitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5),
+            subtitle.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 20),
+            subtitle.widthAnchor.constraint(equalToConstant: 300),
+        ])
+        
+        let icon = UIImageView()
+        v.addSubview(icon)
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.image = UIImage(systemName: "photo.on.rectangle")
+        icon.contentMode = .scaleAspectFill
+        icon.tintColor = darkRed
+        NSLayoutConstraint.activate([
+            icon.centerYAnchor.constraint(equalTo: title.bottomAnchor, constant: 0),
+            icon.trailingAnchor.constraint(equalTo: v.trailingAnchor, constant: -20),
+            icon.widthAnchor.constraint(equalToConstant: 60),
+            icon.heightAnchor.constraint(equalToConstant: 60),
+            icon.bottomAnchor.constraint(equalTo: v.bottomAnchor, constant: -20),
+        ])
+        
+        return v
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -225,6 +273,9 @@ class HomeViewController: VCWithScroll {
         
         containerView.addSubview(attendeesView)
         setAttendeesConstraints()
+        
+        containerView.addSubview(photosView)
+        setPhotosConstraints()
         
         setupBGAndScroll(enMap["home_title"] ?? "Home")
     }
@@ -260,6 +311,30 @@ extension HomeViewController {
     @objc
     private func tapAttendees(_ sender: Any) {
         let vc = AttendeesViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// * MARK * Photos
+extension HomeViewController {
+    private func setPhotosConstraints() {
+        NSLayoutConstraint.activate([
+            photosView.topAnchor.constraint(equalTo: attendeesView.bottomAnchor, constant: 10),
+            photosView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            photosView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
+        ])
+        updateContentSize(10)
+        updateContentSize(photosView)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapPhotos(_:)))
+        photosView.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    private func tapPhotos(_ sender: Any) {
+        let vc = PhotosViewController()
+        vc.loadPhotos()
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }

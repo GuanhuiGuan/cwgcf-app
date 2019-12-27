@@ -34,7 +34,7 @@ class Profile : Codable {
             imgView.loadLocal(avatarUrl, defaultImg: UIImage(systemName: "person.crop.circle")!, defaultTint: darkRed)
         } else {
             // Fetch img data from S3
-            imgView.load(urlStr: avatarUrl, defaultImg: UIImage(systemName: "person.crop.circle")!, defaultTint: darkRed)
+            imgView.load(avatarUrl, defaultImg: UIImage(systemName: "person.crop.circle")!, defaultTint: darkRed)
         }
     }
     
