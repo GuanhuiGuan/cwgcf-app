@@ -14,7 +14,7 @@ class AttendeesViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = backgroundColor
         tableView.register(ProfileCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
         navigationItem.title = "Attendees"

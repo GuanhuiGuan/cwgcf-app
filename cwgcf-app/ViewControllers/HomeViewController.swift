@@ -288,6 +288,17 @@ extension HomeViewController {
             titleView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
         ])
         updateContentSize(titleView)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapTitle(_:)))
+        titleView.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    private func tapTitle(_ sender : Any) {
+        let vc = ScheduleViewController()
+        vc.loadSchedules()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

@@ -36,6 +36,9 @@
 		48685EE823B5EB3900DAC780 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EE723B5EB3900DAC780 /* PhotoCell.swift */; };
 		48685EEA23B5F2B400DAC780 /* PhotoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EE923B5F2B400DAC780 /* PhotoAPIClient.swift */; };
 		48685EEC23B5F36300DAC780 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EEB23B5F36300DAC780 /* Photo.swift */; };
+		48685EEE23B6FBCD00DAC780 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EED23B6FBCD00DAC780 /* ScheduleViewController.swift */; };
+		48685EF023B723E900DAC780 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EEF23B723E900DAC780 /* ScheduleCell.swift */; };
+		48685EF223B7343400DAC780 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EF123B7343400DAC780 /* Date.swift */; };
 		7081F82164EF74D9FBFB5AC4 /* Pods_cwgcf_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C26D2E0E9B18B09E45E887 /* Pods_cwgcf_appTests.framework */; };
 		8A203A0EF1A415639FBF18D8 /* Pods_cwgcf_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B236C22E988590F2444ED01 /* Pods_cwgcf_app.framework */; };
 /* End PBXBuildFile section */
@@ -96,6 +99,9 @@
 		48685EE723B5EB3900DAC780 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		48685EE923B5F2B400DAC780 /* PhotoAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPIClient.swift; sourceTree = "<group>"; };
 		48685EEB23B5F36300DAC780 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		48685EED23B6FBCD00DAC780 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		48685EEF23B723E900DAC780 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
+		48685EF123B7343400DAC780 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		52BD2E7B2782C779FF992068 /* Pods-cwgcf-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app/Pods-cwgcf-app.debug.xcconfig"; sourceTree = "<group>"; };
 		5A95FEEE74B3748EEE150A58 /* Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app-cwgcf-appUITests/Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C28460D5A8CA27B8C772454A /* Pods-cwgcf-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-appTests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-appTests/Pods-cwgcf-appTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -216,6 +222,7 @@
 				48685ED523B43DD000DAC780 /* AttendeesViewController.swift */,
 				48685EDC23B4734200DAC780 /* ProfileViewController.swift */,
 				48685EE523B5EACD00DAC780 /* PhotosViewController.swift */,
+				48685EED23B6FBCD00DAC780 /* ScheduleViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 			children = (
 				48685EC523ACB45800DAC780 /* VCWithScroll.swift */,
 				48685EE323B4CFD200DAC780 /* UIImageExt.swift */,
+				48685EF123B7343400DAC780 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -254,6 +262,7 @@
 				48685ECE23B1C3BE00DAC780 /* CellContent.swift */,
 				48685ED723B43FC600DAC780 /* ProfileCell.swift */,
 				48685EE723B5EB3900DAC780 /* PhotoCell.swift */,
+				48685EEF23B723E900DAC780 /* ScheduleCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -492,12 +501,15 @@
 				48685EEA23B5F2B400DAC780 /* PhotoAPIClient.swift in Sources */,
 				48685ED123B1C8CE00DAC780 /* Sizes.swift in Sources */,
 				48685EDB23B46C0F00DAC780 /* Profile.swift in Sources */,
+				48685EEE23B6FBCD00DAC780 /* ScheduleViewController.swift in Sources */,
 				48685E8D23ACA3C400DAC780 /* HomeViewController.swift in Sources */,
 				48685ECD23B1C13900DAC780 /* TopBannerCell.swift in Sources */,
 				48685EBC23ACABE800DAC780 /* Colors.swift in Sources */,
 				48685ECF23B1C3BE00DAC780 /* CellContent.swift in Sources */,
 				48685EDD23B4734200DAC780 /* ProfileViewController.swift in Sources */,
+				48685EF023B723E900DAC780 /* ScheduleCell.swift in Sources */,
 				48685EE823B5EB3900DAC780 /* PhotoCell.swift in Sources */,
+				48685EF223B7343400DAC780 /* Date.swift in Sources */,
 				48685EC123ACB18300DAC780 /* en-US.swift in Sources */,
 				48685E8923ACA3C400DAC780 /* AppDelegate.swift in Sources */,
 				48685EE623B5EACD00DAC780 /* PhotosViewController.swift in Sources */,
@@ -692,7 +704,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.7;
+				MARKETING_VERSION = 0.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -712,7 +724,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.7;
+				MARKETING_VERSION = 0.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -47,7 +47,7 @@ class ProfileCell: UITableViewCell {
     lazy var bottomBorder : UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = .systemGray5
+        v.backgroundColor = backgroundColor
         return v
     }()
 

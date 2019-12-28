@@ -22,7 +22,7 @@ class PhotoCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .systemGray5
+        contentView.backgroundColor = backgroundColor
         
         contentView.addSubview(imgView)
         NSLayoutConstraint.activate([

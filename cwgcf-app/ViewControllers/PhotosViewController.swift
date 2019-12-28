@@ -16,7 +16,7 @@ class PhotosViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = backgroundColor
         tableView.register(PhotoCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
         navigationItem.title = "Album"
