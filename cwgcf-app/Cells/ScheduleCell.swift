@@ -16,8 +16,24 @@ class ScheduleCell : UICollectionViewCell {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.backgroundColor = ghostWhite
-        v.layer.cornerRadius = 30
+        v.layer.cornerRadius = 15
         v.layer.masksToBounds = true
+        return v
+    }()
+    
+    lazy var timeTableContentSize : CGSize = {
+        let s = CGSize()
+        return s
+    }()
+    
+    lazy var timeTableContainer : UIView = {
+        let v = UIView()
+        return v
+    }()
+    
+    lazy var timeTableView : UIScrollView = {
+        let v = UIScrollView()
+        v.addSubview(timeTableContainer)
         return v
     }()
     
@@ -27,6 +43,9 @@ class ScheduleCell : UICollectionViewCell {
         
         addSubview(bgView)
         setBg()
+        
+        bgView.addSubview(timeTableView)
+        setTimeTable()
     }
     
     required init?(coder: NSCoder) {
@@ -35,10 +54,44 @@ class ScheduleCell : UICollectionViewCell {
     
     private func setBg() {
         NSLayoutConstraint.activate([
-            bgView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100),
-            bgView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
+            bgView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 75),
+            bgView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -75),
             bgView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             bgView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
         ])
+    }
+}
+
+extension ScheduleCell {
+    private func setTimeTable() {
+        layoutIfNeeded()
+        timeTableContentSize = CGSize(width: self.bgView.bounds.width, height: 24 * timeTableCellHeight)
+        timeTableContainer.frame.size = timeTableContentSize
+        timeTableView.contentSize = timeTableContentSize
+        timeTableView.frame = self.bgView.bounds
+        
+        setHours()
+    }
+    
+    private func setHours() {
+        var constraints : [NSLayoutConstraint] = []
+        for i in 1...24 {
+            var timeStr = "\(i):00"
+            if timeStr.count == 4 {
+                timeStr = "0" + timeStr
+            }
+            let v = HourCell()
+            v.translatesAutoresizingMaskIntoConstraints = false
+            v.timeStr = timeStr
+            timeTableContainer.addSubview(v)
+            let offset = CGFloat(i-1) * timeTableCellHeight
+            constraints += [
+                v.topAnchor.constraint(equalTo: timeTableContainer.topAnchor, constant: offset),
+                v.leadingAnchor.constraint(equalTo: timeTableContainer.leadingAnchor, constant: 0),
+                v.trailingAnchor.constraint(equalTo: timeTableContainer.trailingAnchor, constant: 0),
+                v.heightAnchor.constraint(equalToConstant: timeTableCellHeight),
+            ]
+        }
+        NSLayoutConstraint.activate(constraints)
     }
 }

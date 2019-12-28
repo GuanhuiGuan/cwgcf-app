@@ -41,7 +41,6 @@ class ScheduleViewController : UIViewController {
 
 extension ScheduleViewController {
     private func setMainview() {
-        print(navigationController?.navigationBar.frame.height ?? 0)
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: view.topAnchor, constant: (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
             (self.navigationController?.navigationBar.frame.height ?? 0.0)),
@@ -82,7 +81,7 @@ extension ScheduleViewController : UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == mainView {
-            return CGSize(width: view.frame.width, height: view.frame.height)
+            return CGSize(width: view.frame.width, height: mainView.frame.height)
         }
         return CGSize.zero
     }
@@ -111,7 +110,7 @@ extension ScheduleViewController : UICollectionViewDelegateFlowLayout {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == mainView {
             let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-//            topBannerPageCtrl.currentPage = Int(pageNumber)
+            // topBannerPageCtrl.currentPage = Int(pageNumber)
             navigationItem.title = dates[Int(pageNumber)].formatToDMY()
         }
     }

@@ -16,3 +16,5 @@ let arrowSize : CGFloat = 30
 
 let profileAvatarRadius : CGFloat = 30
 let profileAvatarLargeRadius : CGFloat = 60
+
+let timeTableCellHeight : CGFloat = 70

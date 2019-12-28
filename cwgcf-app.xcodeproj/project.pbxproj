@@ -39,6 +39,7 @@
 		48685EEE23B6FBCD00DAC780 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EED23B6FBCD00DAC780 /* ScheduleViewController.swift */; };
 		48685EF023B723E900DAC780 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EEF23B723E900DAC780 /* ScheduleCell.swift */; };
 		48685EF223B7343400DAC780 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EF123B7343400DAC780 /* Date.swift */; };
+		48685EF423B74C4300DAC780 /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EF323B74C4300DAC780 /* HourCell.swift */; };
 		7081F82164EF74D9FBFB5AC4 /* Pods_cwgcf_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C26D2E0E9B18B09E45E887 /* Pods_cwgcf_appTests.framework */; };
 		8A203A0EF1A415639FBF18D8 /* Pods_cwgcf_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B236C22E988590F2444ED01 /* Pods_cwgcf_app.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		48685EED23B6FBCD00DAC780 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		48685EEF23B723E900DAC780 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		48685EF123B7343400DAC780 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		48685EF323B74C4300DAC780 /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		52BD2E7B2782C779FF992068 /* Pods-cwgcf-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app/Pods-cwgcf-app.debug.xcconfig"; sourceTree = "<group>"; };
 		5A95FEEE74B3748EEE150A58 /* Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app-cwgcf-appUITests/Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C28460D5A8CA27B8C772454A /* Pods-cwgcf-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-appTests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-appTests/Pods-cwgcf-appTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				48685ED723B43FC600DAC780 /* ProfileCell.swift */,
 				48685EE723B5EB3900DAC780 /* PhotoCell.swift */,
 				48685EEF23B723E900DAC780 /* ScheduleCell.swift */,
+				48685EF323B74C4300DAC780 /* HourCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				48685EEA23B5F2B400DAC780 /* PhotoAPIClient.swift in Sources */,
 				48685ED123B1C8CE00DAC780 /* Sizes.swift in Sources */,
 				48685EDB23B46C0F00DAC780 /* Profile.swift in Sources */,
+				48685EF423B74C4300DAC780 /* HourCell.swift in Sources */,
 				48685EEE23B6FBCD00DAC780 /* ScheduleViewController.swift in Sources */,
 				48685E8D23ACA3C400DAC780 /* HomeViewController.swift in Sources */,
 				48685ECD23B1C13900DAC780 /* TopBannerCell.swift in Sources */,
@@ -704,7 +708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.9;
+				MARKETING_VERSION = 0.2.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -724,7 +728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.9;
+				MARKETING_VERSION = 0.2.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
