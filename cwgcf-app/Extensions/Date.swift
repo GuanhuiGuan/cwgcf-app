@@ -23,6 +23,11 @@ extension String {
         return toDateInternal(dateFormatter)
     }
     
+    func formatToDMY() -> String {
+        let date = toDate()
+        return date?.toStringDateOnly() ?? ""
+    }
+    
     private func toDateInternal(_ dateFormatter : DateFormatter) -> Date? {
         guard let date = dateFormatter.date(from:self) else { return nil }
         return date
@@ -32,7 +37,7 @@ extension String {
 extension Date {
     func toStringDateOnly() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM, yyyy"
+        dateFormatter.dateFormat = "dd MMM, yyyy"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         return dateFormatter.string(from: self)
     }

@@ -8,6 +8,12 @@
 
 import UIKit
 
+var dates : [String] = [
+    "2020-10-18",
+    "2020-10-19",
+    "2020-10-20",
+]
+
 class HomeViewController: VCWithScroll {
     
     var topBannerContents : [String] = []
@@ -40,6 +46,8 @@ class HomeViewController: VCWithScroll {
         v.translatesAutoresizingMaskIntoConstraints = false
         v.backgroundColor = ghostWhite
         
+        loadSchedules()
+        
         let locationLabel = UILabel()
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         locationLabel.text = enMap["event_location"]
@@ -55,7 +63,7 @@ class HomeViewController: VCWithScroll {
         
         let dateLabel = UILabel()
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.text = enMap["event_dates"]
+        dateLabel.text = "\(dates[0].formatToDMY()) - \(dates[dates.count-1].formatToDMY())"
         dateLabel.numberOfLines = 0
         dateLabel.font = UIFont.systemFont(ofSize: 16)
         dateLabel.textColor = .lightGray
@@ -296,9 +304,19 @@ extension HomeViewController {
     @objc
     private func tapTitle(_ sender : Any) {
         let vc = ScheduleViewController()
-        vc.loadSchedules()
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func loadSchedules() {
+        let _dates = [
+            "2020-10-18",
+            "2020-10-19",
+            "2020-10-20",
+        ]
+        if _dates.count > 0 {
+            dates = _dates
+        }
     }
 }
 

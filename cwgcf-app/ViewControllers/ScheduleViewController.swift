@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class ScheduleViewController : UIViewController {
-    var dates : [String] = []
     
     lazy var mainView : UICollectionView = {
         let flow = UICollectionViewFlowLayout()
@@ -29,20 +28,11 @@ class ScheduleViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         view.backgroundColor = backgroundColor
-        navigationItem.title = dates[0].toDate()?.toStringDateOnly()
+        navigationItem.title = dates[0].formatToDMY()
         
         view.addSubview(mainView)
         setMainview()
-    }
-    
-    func loadSchedules() {
-        dates = [
-            "2020-10-18",
-            "2020-10-19",
-            "2020-10-20",
-        ]
     }
 }
 
@@ -122,7 +112,7 @@ extension ScheduleViewController : UICollectionViewDelegateFlowLayout {
         if scrollView == mainView {
             let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
 //            topBannerPageCtrl.currentPage = Int(pageNumber)
-            navigationItem.title = dates[Int(pageNumber)].toDate()?.toStringDateOnly()
+            navigationItem.title = dates[Int(pageNumber)].formatToDMY()
         }
     }
 }
