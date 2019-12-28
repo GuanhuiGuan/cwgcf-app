@@ -304,6 +304,7 @@ extension HomeViewController {
     @objc
     private func tapTitle(_ sender : Any) {
         let vc = ScheduleViewController()
+        vc.loadEvents()
         vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }

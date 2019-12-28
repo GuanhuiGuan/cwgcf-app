@@ -23,6 +23,26 @@ let enMap : [String:String] = [
 
 var cacheProfiles : [Profile] = []
 
+var tempSchedules : [[ScheduleEvent]] = [
+    [
+        ScheduleEvent(st: "09:00", et: "10:00", t: "Registration", desc: "Exhibition"),
+        ScheduleEvent(st: "10:00", et: "11:00", t: "Exhibition Opening", desc: ""),
+        ScheduleEvent(st: "15:00", et: "18:00", t: "Welcoming Banquet", desc: ""),
+    ],
+    [
+        ScheduleEvent(st: "8:00", et: "9:00", t: "Registration", desc: "CWGCF"),
+        ScheduleEvent(st: "9:00", et: "12:00", t: "CWGCF Opening Ceremony", desc: ""),
+        ScheduleEvent(st: "12:30", et: "14:30", t: "Lunch", desc: ""),
+        ScheduleEvent(st: "14:30", et: "15:30", t: "WCGOCY Opening Ceremony", desc: ""),
+        ScheduleEvent(st: "15:30", et: "17:00", t: "Forums", desc: ""),
+        ScheduleEvent(st: "18:30", et: "22:00", t: "Gala Dinner", desc: ""),
+    ],
+    [
+        ScheduleEvent(st: "9:30", et: "11:00", t: "Closing Ceremony", desc: ""),
+        ScheduleEvent(st: "11:00", et: "12:00", t: "Flag Exchange", desc: ""),
+    ],
+]
+
 let enUserDB : [String:Profile] = [
     "000": Profile("000", name: "Steve Jobs", title: "Founder of Apple Inc", avatarUrl: "steve_jobs", description: "Steven Paul Jobs (/dʒɒbz/; February 24, 1955 – October 5, 2011) was an American business magnate, industrial designer, investor, and media proprietor. He was the chairman, chief executive officer (CEO), and co-founder of Apple Inc., the chairman and majority shareholder of Pixar, a member of The Walt Disney Company's board of directors following its acquisition of Pixar, and the founder, chairman, and CEO of NeXT. Jobs is widely recognized as a pioneer of the personal computer revolution of the 1970s and 1980s, along with Apple co-founder Steve Wozniak. Jobs's design aesthetic was influenced by philosophies of Zen and Buddhism. In India, he experienced Buddhism while on his seven-month spiritual journey,[235] and his sense of intuition was influenced by the spiritual people with whom he studied.[235] He also learned from many references and sources, such as modernist architectural style of Joseph Eichler,[citation needed] and the industrial designs of Richard Sapper[236] and Dieter Rams. According to Apple co-founder Steve Wozniak, \"Steve didn't ever code. He wasn't an engineer and he didn't do any original design...\"[237][238] Daniel Kottke, one of Apple's earliest employees and a college friend of Jobs's, stated: \"Between Woz and Jobs, Woz was the innovator, the inventor. Steve Jobs was the marketing person."),
     "001": Profile("001", name: "John Doe", title: "", avatarUrl: "", description: ""),

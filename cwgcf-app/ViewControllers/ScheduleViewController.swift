@@ -11,6 +11,8 @@ import UIKit
 
 class ScheduleViewController : UIViewController {
     
+    var allEvents : [[ScheduleEvent]] = []
+    
     lazy var mainView : UICollectionView = {
         let flow = UICollectionViewFlowLayout()
         flow.scrollDirection = .horizontal
@@ -49,6 +51,10 @@ extension ScheduleViewController {
             mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
         ])
     }
+    
+    func loadEvents() {
+        allEvents = tempSchedules
+    }
 }
 
 extension ScheduleViewController : UICollectionViewDataSource {
@@ -69,8 +75,7 @@ extension ScheduleViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == mainView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCell.ID, for: indexPath) as! ScheduleCell
-//            cell.cellContent = CellContent(topBannerContents[indexPath.row])
-//            cell.setupCell()
+            cell.events = allEvents[indexPath.row]
             return cell
         }
         return UICollectionViewCell()

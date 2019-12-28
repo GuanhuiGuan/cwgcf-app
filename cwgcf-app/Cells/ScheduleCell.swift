@@ -12,7 +12,14 @@ import UIKit
 class ScheduleCell : UICollectionViewCell {
     static var ID : String = "ScheduleCell"
     
+    var events : [ScheduleEvent]? {
+        didSet {
+            setEvents()
+        }
+    }
+    
     var hoursConstraints : [NSLayoutConstraint] = []
+    var eventsConstraints : [NSLayoutConstraint] = []
     
     lazy var bgView : UIView = {
         let v = UIView()
@@ -36,6 +43,7 @@ class ScheduleCell : UICollectionViewCell {
     lazy var timeTableView : UIScrollView = {
         let v = UIScrollView()
         v.addSubview(timeTableContainer)
+        v.showsVerticalScrollIndicator = false
         return v
     }()
     
@@ -97,6 +105,26 @@ extension ScheduleCell {
             v.leadingAnchor.constraint(equalTo: timeTableContainer.leadingAnchor, constant: 0),
             v.trailingAnchor.constraint(equalTo: timeTableContainer.trailingAnchor, constant: 0),
             v.heightAnchor.constraint(equalToConstant: timeTableCellHeight),
+        ]
+    }
+    
+    private func setEvents() {
+        for event in events! {
+            setEvent(event)
+        }
+        NSLayoutConstraint.activate(eventsConstraints)
+    }
+    
+    private func setEvent(_ e : ScheduleEvent) {
+        let v = EventCell()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.scheduleEvent = e
+        timeTableContainer.addSubview(v)
+        eventsConstraints += [
+            v.topAnchor.constraint(equalTo: timeTableContainer.topAnchor, constant: e.getOffset()),
+            v.leadingAnchor.constraint(equalTo: timeTableContainer.leadingAnchor, constant: 70),
+            v.trailingAnchor.constraint(equalTo: timeTableContainer.trailingAnchor, constant: 0),
+            v.heightAnchor.constraint(equalToConstant: e.getHeight()),
         ]
     }
 }
