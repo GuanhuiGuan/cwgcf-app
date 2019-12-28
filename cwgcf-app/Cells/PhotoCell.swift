@@ -13,6 +13,7 @@ class PhotoCell: UITableViewCell {
     lazy var imgView : UIImageView = {
         let v = UIImageView()
         v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = backgroundColor
         v.layer.masksToBounds = true
         v.contentMode = .scaleAspectFill
         return v
@@ -30,7 +31,7 @@ class PhotoCell: UITableViewCell {
             imgView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             imgView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             imgView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            imgView.heightAnchor.constraint(lessThanOrEqualToConstant: 400),
+            imgView.heightAnchor.constraint(lessThanOrEqualToConstant: 200),
         ])
     }
     

@@ -8,7 +8,8 @@
     - Ad banner (Done)
     - Time (Done)
     - Address (Done)
-    - Schedule
+    - Schedule(Done)
+        - Event detail popup
     - Guests(Done)
     - Photos(Done)
 - Forum (P1)

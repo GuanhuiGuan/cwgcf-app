@@ -113,6 +113,10 @@ extension ScheduleCell {
             setEvent(event)
         }
         NSLayoutConstraint.activate(eventsConstraints)
+        
+        if events!.count > 0 {
+            timeTableView.setContentOffset(CGPoint(x: 0, y: events![0].getOffset() - 5), animated: false)
+        }
     }
     
     private func setEvent(_ e : ScheduleEvent) {
