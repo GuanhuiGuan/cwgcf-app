@@ -12,6 +12,8 @@ import UIKit
 class ScheduleCell : UICollectionViewCell {
     static var ID : String = "ScheduleCell"
     
+    var hoursConstraints : [NSLayoutConstraint] = []
+    
     lazy var bgView : UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -74,24 +76,27 @@ extension ScheduleCell {
     }
     
     private func setHours() {
-        var constraints : [NSLayoutConstraint] = []
-        for i in 1...24 {
-            var timeStr = "\(i):00"
-            if timeStr.count == 4 {
-                timeStr = "0" + timeStr
-            }
-            let v = HourCell()
-            v.translatesAutoresizingMaskIntoConstraints = false
-            v.timeStr = timeStr
-            timeTableContainer.addSubview(v)
-            let offset = CGFloat(i-1) * timeTableCellHeight
-            constraints += [
-                v.topAnchor.constraint(equalTo: timeTableContainer.topAnchor, constant: offset),
-                v.leadingAnchor.constraint(equalTo: timeTableContainer.leadingAnchor, constant: 0),
-                v.trailingAnchor.constraint(equalTo: timeTableContainer.trailingAnchor, constant: 0),
-                v.heightAnchor.constraint(equalToConstant: timeTableCellHeight),
-            ]
+        for h in 1...24 {
+            setHour(h)
         }
-        NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate(self.hoursConstraints)
+    }
+    
+    private func setHour(_ i : Int) {
+        var timeStr = "\(i):00"
+        if timeStr.count == 4 {
+            timeStr = "0" + timeStr
+        }
+        let v = HourCell()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.timeStr = timeStr
+        timeTableContainer.addSubview(v)
+        let offset = CGFloat(i-1) * timeTableCellHeight
+        hoursConstraints += [
+            v.topAnchor.constraint(equalTo: timeTableContainer.topAnchor, constant: offset),
+            v.leadingAnchor.constraint(equalTo: timeTableContainer.leadingAnchor, constant: 0),
+            v.trailingAnchor.constraint(equalTo: timeTableContainer.trailingAnchor, constant: 0),
+            v.heightAnchor.constraint(equalToConstant: timeTableCellHeight),
+        ]
     }
 }
