@@ -19,6 +19,9 @@ let enMap : [String:String] = [
     
     "photos_title": "Say cheese!",
     "photos_subtitle": "Check out our album",
+    
+    "contact_page_title": "Need more info?",
+    "contact_page_subtitle": "Contact us at:"
 ]
 
 var cacheProfiles : [Profile] = []
