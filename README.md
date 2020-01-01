@@ -4,7 +4,7 @@
 
 ## Demo 0.3.1
 
-![](./demos/demo_0.3.1.mp4)
+![](./demos/demo_0_3_1.mp4)
 
 ## To Develop
 
