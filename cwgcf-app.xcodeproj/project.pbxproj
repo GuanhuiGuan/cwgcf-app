@@ -42,6 +42,9 @@
 		48685EF423B74C4300DAC780 /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EF323B74C4300DAC780 /* HourCell.swift */; };
 		48685EF623B805BB00DAC780 /* ScheduleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EF523B805BB00DAC780 /* ScheduleEvent.swift */; };
 		48685EF823B80C4300DAC780 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EF723B80C4300DAC780 /* EventCell.swift */; };
+		48685EFA23BDECEA00DAC780 /* ForumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EF923BDECEA00DAC780 /* ForumCell.swift */; };
+		48685EFC23BDF00100DAC780 /* Forum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EFB23BDF00100DAC780 /* Forum.swift */; };
+		48685F0023BF170700DAC780 /* ForumAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EFF23BF170700DAC780 /* ForumAPIClient.swift */; };
 		7081F82164EF74D9FBFB5AC4 /* Pods_cwgcf_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C26D2E0E9B18B09E45E887 /* Pods_cwgcf_appTests.framework */; };
 		8A203A0EF1A415639FBF18D8 /* Pods_cwgcf_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B236C22E988590F2444ED01 /* Pods_cwgcf_app.framework */; };
 /* End PBXBuildFile section */
@@ -108,6 +111,9 @@
 		48685EF323B74C4300DAC780 /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		48685EF523B805BB00DAC780 /* ScheduleEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEvent.swift; sourceTree = "<group>"; };
 		48685EF723B80C4300DAC780 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		48685EF923BDECEA00DAC780 /* ForumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumCell.swift; sourceTree = "<group>"; };
+		48685EFB23BDF00100DAC780 /* Forum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forum.swift; sourceTree = "<group>"; };
+		48685EFF23BF170700DAC780 /* ForumAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumAPIClient.swift; sourceTree = "<group>"; };
 		52BD2E7B2782C779FF992068 /* Pods-cwgcf-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app/Pods-cwgcf-app.debug.xcconfig"; sourceTree = "<group>"; };
 		5A95FEEE74B3748EEE150A58 /* Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app-cwgcf-appUITests/Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C28460D5A8CA27B8C772454A /* Pods-cwgcf-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-appTests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-appTests/Pods-cwgcf-appTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -271,6 +277,7 @@
 				48685EEF23B723E900DAC780 /* ScheduleCell.swift */,
 				48685EF323B74C4300DAC780 /* HourCell.swift */,
 				48685EF723B80C4300DAC780 /* EventCell.swift */,
+				48685EF923BDECEA00DAC780 /* ForumCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -281,6 +288,7 @@
 				48685EDA23B46C0F00DAC780 /* Profile.swift */,
 				48685EEB23B5F36300DAC780 /* Photo.swift */,
 				48685EF523B805BB00DAC780 /* ScheduleEvent.swift */,
+				48685EFB23BDF00100DAC780 /* Forum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -290,6 +298,7 @@
 			children = (
 				48685EDF23B49E5600DAC780 /* ProfileAPIClient.swift */,
 				48685EE923B5F2B400DAC780 /* PhotoAPIClient.swift */,
+				48685EFF23BF170700DAC780 /* ForumAPIClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -512,6 +521,7 @@
 				48685EDB23B46C0F00DAC780 /* Profile.swift in Sources */,
 				48685EF423B74C4300DAC780 /* HourCell.swift in Sources */,
 				48685EEE23B6FBCD00DAC780 /* ScheduleViewController.swift in Sources */,
+				48685EFA23BDECEA00DAC780 /* ForumCell.swift in Sources */,
 				48685EF623B805BB00DAC780 /* ScheduleEvent.swift in Sources */,
 				48685E8D23ACA3C400DAC780 /* HomeViewController.swift in Sources */,
 				48685ECD23B1C13900DAC780 /* TopBannerCell.swift in Sources */,
@@ -523,6 +533,7 @@
 				48685EF223B7343400DAC780 /* Date.swift in Sources */,
 				48685EC123ACB18300DAC780 /* en-US.swift in Sources */,
 				48685E8923ACA3C400DAC780 /* AppDelegate.swift in Sources */,
+				48685F0023BF170700DAC780 /* ForumAPIClient.swift in Sources */,
 				48685EE623B5EACD00DAC780 /* PhotosViewController.swift in Sources */,
 				48685EC823ACBECA00DAC780 /* ForumViewController.swift in Sources */,
 				48685ECA23ACBF2000DAC780 /* ContactViewController.swift in Sources */,
@@ -532,6 +543,7 @@
 				48685EE223B4B07600DAC780 /* DBConfigs.swift in Sources */,
 				48685EF823B80C4300DAC780 /* EventCell.swift in Sources */,
 				48685E8B23ACA3C400DAC780 /* SceneDelegate.swift in Sources */,
+				48685EFC23BDF00100DAC780 /* Forum.swift in Sources */,
 				48685ED623B43DD000DAC780 /* AttendeesViewController.swift in Sources */,
 				48685ED823B43FC600DAC780 /* ProfileCell.swift in Sources */,
 				48685EE423B4CFD200DAC780 /* UIImageExt.swift in Sources */,
@@ -716,7 +728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.1;
+				MARKETING_VERSION = 0.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -736,7 +748,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.1;
+				MARKETING_VERSION = 0.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

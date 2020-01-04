@@ -16,11 +16,15 @@
         - Event detail popup
     - Guests(Done)
     - Photos(Done)
-- Forum (P1)
+- Forum (P0)
     - Login
     - Signup
     - Home table
+        - Layout of user, post time, title, content preview
+        - Backend from API
     - Thread table
+        - Layout of all replies
+        - Backend from API
 - Contacts (P0)
     - Info(Done)
     - Cooperation(Done)
@@ -28,3 +32,5 @@
 - Backend(p1)
     - Deploy api
     - APIClient reconstruct
+    - Partial refresh of tables
+    - Search in tables

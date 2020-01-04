@@ -48,4 +48,13 @@ extension Date {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         return dateFormatter.string(from: self)
     }
+    
+    func toStrWithFormat(_ fmt : String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = fmt
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        // dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        return dateFormatter.string(from: self)
+    }
 }
