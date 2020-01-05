@@ -17,13 +17,10 @@ class ForumVotes : Codable {
     
     var upvotes : Int64 = 0
     var downvotes : Int64 = 0
-    
-    func getRank() -> Int64 {
-        return upvotes - downvotes
-    }
+    var votesSum : Int64 = 0
     
     func getRankStr() -> String {
-        let abs = Double(getRank())
+        let abs = Double(votesSum)
         var res : Int64 = 0
         var sign : Double = 1
         var suffix = ""
@@ -55,6 +52,7 @@ class ForumVotes : Codable {
 class ForumComment : Codable {
     var _id : String = ""
     var userId : String = ""
+    var userProfile : Profile = Profile()
     var content : String = ""
     var timestamp : Int64 = 0
     var forumVotes : ForumVotes = ForumVotes()
@@ -68,6 +66,7 @@ class ForumSubComments : Codable {
 class ForumPost : Codable {
     var _id : String = ""
     var userId : String = ""
+    var userProfile : Profile = Profile()
     var title : String = ""
     var content : String = ""
     var image : String = ""

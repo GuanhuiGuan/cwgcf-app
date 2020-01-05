@@ -8,29 +8,36 @@
 
 ## To Develop
 
-- Home (P0)
+### P0
+
+- Home
     - Ad banner (Done)
     - Time (Done)
     - Address (Done)
-    - Schedule(Done)
+    - Schedule (Done)
         - Event detail popup
-    - Guests(Done)
-    - Photos(Done)
-- Forum (P0)
+    - Guests (Done)
+        - Search
+        - Drag down to refresh
+    - Photos (Done)
+- Forum
     - Login
     - Signup
     - Home table
-        - Layout of user, post time, title, content preview
-        - Backend from API
+        - Layout of user, post time, title, content preview (Done)
+        - Backend from API (Done)
+        - Search
+        - Drag down to refresh
     - Thread table
         - Layout of all replies
         - Backend from API
-- Contacts (P0)
-    - Info(Done)
-    - Cooperation(Done)
-    
-- Backend(p1)
+- Contacts
+    - Info (Done)
+    - Cooperation (Done)
+
+### P1
+
+- Backend
     - Deploy api
-    - APIClient reconstruct
     - Partial refresh of tables
     - Search in tables

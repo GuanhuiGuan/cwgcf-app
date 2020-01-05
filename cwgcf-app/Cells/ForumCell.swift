@@ -119,9 +119,14 @@ class ForumCell : UITableViewCell {
         titleView.text = forumPost.getTitle()
         subTitleView.text = forumPost.getSubTitle()
         
-        avatar.image = UIImage(systemName: "person.fill")
-        avatar.tintColor = darkRed
-        username.text = "Anonymous"
+        let img = forumPost.getImage()
+        if img == nil {
+            avatar.image = UIImage(systemName: "person.fill")
+            avatar.tintColor = darkRed
+        } else {
+            avatar.image = img
+        }
+        username.text = forumPost.userProfile.name
         timestamp.text = forumPost.getTime()
         
         voteCount.text = forumPost.forumVotes.getRankStr()

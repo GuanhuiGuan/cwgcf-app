@@ -11,7 +11,7 @@ import Foundation
 class ProfileAPIClient {
     
     func GetAllProfiles(){
-        let url = URL(string: mongoURL + "/profiles")!
+        let url = URL(string: mongoURL + "/profile")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("error: \(error)")
@@ -29,7 +29,7 @@ class ProfileAPIClient {
     
     // not implemented
     func GetProfile(_ userID:String) {
-        let url = URL(string: mongoURL + "/profiles/" + userID)!
+        let url = URL(string: mongoURL + "/profile/" + userID)!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("error: \(error)")

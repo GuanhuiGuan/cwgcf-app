@@ -45,6 +45,7 @@
 		48685EFA23BDECEA00DAC780 /* ForumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EF923BDECEA00DAC780 /* ForumCell.swift */; };
 		48685EFC23BDF00100DAC780 /* Forum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EFB23BDF00100DAC780 /* Forum.swift */; };
 		48685F0023BF170700DAC780 /* ForumAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EFF23BF170700DAC780 /* ForumAPIClient.swift */; };
+		48685F0223C16BE700DAC780 /* shenzhen.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 48685F0123C16BE700DAC780 /* shenzhen.gpx */; };
 		7081F82164EF74D9FBFB5AC4 /* Pods_cwgcf_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C26D2E0E9B18B09E45E887 /* Pods_cwgcf_appTests.framework */; };
 		8A203A0EF1A415639FBF18D8 /* Pods_cwgcf_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B236C22E988590F2444ED01 /* Pods_cwgcf_app.framework */; };
 /* End PBXBuildFile section */
@@ -114,6 +115,7 @@
 		48685EF923BDECEA00DAC780 /* ForumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumCell.swift; sourceTree = "<group>"; };
 		48685EFB23BDF00100DAC780 /* Forum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forum.swift; sourceTree = "<group>"; };
 		48685EFF23BF170700DAC780 /* ForumAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumAPIClient.swift; sourceTree = "<group>"; };
+		48685F0123C16BE700DAC780 /* shenzhen.gpx */ = {isa = PBXFileReference; lastKnownFileType = text; path = shenzhen.gpx; sourceTree = "<group>"; };
 		52BD2E7B2782C779FF992068 /* Pods-cwgcf-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app/Pods-cwgcf-app.debug.xcconfig"; sourceTree = "<group>"; };
 		5A95FEEE74B3748EEE150A58 /* Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app-cwgcf-appUITests/Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C28460D5A8CA27B8C772454A /* Pods-cwgcf-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-appTests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-appTests/Pods-cwgcf-appTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		48685E7C23ACA3C400DAC780 = {
 			isa = PBXGroup;
 			children = (
+				48685F0123C16BE700DAC780 /* shenzhen.gpx */,
 				48685EB823ACA93A00DAC780 /* README.md */,
 				48685E8723ACA3C400DAC780 /* cwgcf-app */,
 				48685E9E23ACA3C600DAC780 /* cwgcf-appTests */,
@@ -420,6 +423,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48685F0223C16BE700DAC780 /* shenzhen.gpx in Resources */,
 				48685E9523ACA3C600DAC780 /* LaunchScreen.storyboard in Resources */,
 				48685E9223ACA3C600DAC780 /* Assets.xcassets in Resources */,
 				48685E9023ACA3C400DAC780 /* Main.storyboard in Resources */,
@@ -728,7 +732,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.3;
+				MARKETING_VERSION = 0.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -748,7 +752,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.3;
+				MARKETING_VERSION = 0.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -14,7 +14,7 @@ var forumComments : [String:[ForumComment]] = [:]
 
 class ForumAPIClient {
     func GetPosts(){
-        let url = URL(string: mongoURL + "/forum/posts")!
+        let url = URL(string: mongoURL + "/forum/post")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("error: \(error)")
@@ -31,7 +31,7 @@ class ForumAPIClient {
     }
     
     func GetComments(_ postId : String){
-        let url = URL(string: mongoURL + "/forum/post/\(postId)")!
+        let url = URL(string: mongoURL + "/forum/commentsofpost/\(postId)")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("error: \(error)")
