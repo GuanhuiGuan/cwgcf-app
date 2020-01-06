@@ -29,7 +29,7 @@
         - Layout of user, post time, title, content preview (Done)
         - Backend from API (Done)
         - Search
-        - Drag down to refresh
+        - Drag down to refresh (Need modifications)
     - Thread table
         - Layout of all replies
         - Backend from API

@@ -28,6 +28,23 @@ class ForumCell : UITableViewCell {
         v.contentMode = .scaleAspectFill
         return v
     }()
+    lazy var imgEnabledTopConstraint : NSLayoutConstraint = {
+        let c = imgView.topAnchor.constraint(equalTo: subTitleView.bottomAnchor, constant: 10)
+        return c
+    }()
+    lazy var imgEnabledHeightConstraint : NSLayoutConstraint = {
+        let c = imgView.heightAnchor.constraint(equalToConstant: 200)
+        return c
+    }()
+    lazy var imgDisabledTopConstraint : NSLayoutConstraint = {
+        let c = imgView.topAnchor.constraint(equalTo: subTitleView.bottomAnchor, constant: 0)
+        return c
+    }()
+    lazy var imgDisabledHeightConstraint : NSLayoutConstraint = {
+        let c = imgView.heightAnchor.constraint(equalToConstant: 0)
+        return c
+    }()
+    
     
     lazy var titleView : UILabel = {
         let v = UILabel()
@@ -96,10 +113,8 @@ class ForumCell : UITableViewCell {
             subTitleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             subTitleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
-            imgView.topAnchor.constraint(equalTo: subTitleView.bottomAnchor, constant: 10),
             imgView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             imgView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            imgView.heightAnchor.constraint(equalToConstant: 200),
             
             bottomBorder.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             bottomBorder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
@@ -116,13 +131,8 @@ class ForumCell : UITableViewCell {
     }
     
     func setCell() {
-        let image = forumPost.getImage()
-        if image != nil {
-            imgView.image = image
-        } else {
-            imgView.heightAnchor.constraint(equalToConstant: 0).isActive = true
-            imgView.topAnchor.constraint(equalTo: subTitleView.bottomAnchor, constant: 0).isActive = true
-        }
+        setImage()
+        
         titleView.text = forumPost.getTitle()
         subTitleView.text = forumPost.getSubTitle()
         
@@ -138,6 +148,22 @@ class ForumCell : UITableViewCell {
         
         voteStatus = userVoteMap.voteMap[forumPost._id] ?? 0
         refreshVoteValues()
+    }
+    
+    private func setImage() {
+        let image = forumPost.getImage()
+        if image != nil {
+            imgView.image = image
+            imgEnabledTopConstraint.isActive = true
+            imgEnabledHeightConstraint.isActive = true
+            imgDisabledTopConstraint.isActive = false
+            imgDisabledHeightConstraint.isActive = false
+        } else {
+            imgEnabledTopConstraint.isActive = false
+            imgEnabledHeightConstraint.isActive = false
+            imgDisabledTopConstraint.isActive = true
+            imgDisabledHeightConstraint.isActive = true
+        }
     }
     
     private func setUserView() -> UIView {
@@ -236,8 +262,11 @@ class ForumCell : UITableViewCell {
     
     @objc
     func tapUpvote(_ sender: Any) {
+        loadPost()
+        loadUserVoteMap()
+        voteStatus = userVoteMap.voteMap[forumPost._id] ?? 0
         let target = voteStatus == 1 ? 0 : 1
-        forumAPIClient.Vote(userID: localProfile._id, voteID: forumPost._id, isPost: true, previousVote: voteStatus, currentVote: target)
+        forumAPIClient.Vote(userID: localProfile._id, voteID: forumPost._id, isPost: true, offset: target - voteStatus)
         forumPost.forumVotes.votesSum += Int64(target - voteStatus)
         voteStatus = target
         refreshVoteValues()
@@ -245,11 +274,37 @@ class ForumCell : UITableViewCell {
 
     @objc
     func tapDownvote(_ sender: Any) {
+        loadPost()
+        loadUserVoteMap()
+        voteStatus = userVoteMap.voteMap[forumPost._id] ?? 0
         let target = voteStatus == -1 ? 0 : -1
-        forumAPIClient.Vote(userID: localProfile._id, voteID: forumPost._id, isPost: true, previousVote: voteStatus, currentVote: target)
+        forumAPIClient.Vote(userID: localProfile._id, voteID: forumPost._id, isPost: true, offset: target - voteStatus)
         forumPost.forumVotes.votesSum += Int64(target - voteStatus)
         voteStatus = target
         refreshVoteValues()
+    }
+    
+    func loadUserVoteMap() {
+        forumAPIClient.GetVoteMap(localProfile._id) { result in
+            switch result {
+            case .success(let map):
+                userVoteMap = map
+            case .failure(let error):
+                print("Error retrieving userVoteMap: \(error)")
+                userVoteMap.userId = localProfile._id
+            }
+        }
+    }
+    
+    func loadPost() {
+        forumAPIClient.GetPost(forumPost._id) { result in
+            switch result {
+            case .success(let post):
+                self.forumPost = post
+            case .failure(let error):
+                print("Error retrieving post: \(error)")
+            }
+        }
     }
     
     private func refreshVoteValues() {

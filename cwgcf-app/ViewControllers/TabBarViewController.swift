@@ -16,9 +16,12 @@ class TabBarViewController: UITabBarController {
         let client = ProfileAPIClient()
         client.GetAllProfiles()
         
+        let forumViewController = ForumViewController()
+        forumViewController.loadData()
+        
         self.viewControllers = [
             setupChildVC(HomeViewController(), title: "Home", tag: 0, iconName: "house"),
-            setupChildVC(ForumViewController(), title: "Forum", tag: 1, iconName: "person.3"),
+            setupChildVC(forumViewController, title: "Forum", tag: 1, iconName: "person.3"),
             setupChildVC(ContactViewController(), title: "Contact", tag: 2, iconName: "person"),
         ]
         selectedIndex = 0

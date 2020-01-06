@@ -10,15 +10,18 @@ import Foundation
 import UIKit
 
 var userVoteMap : ForumVoteMap = ForumVoteMap()
+var forumPosts : [ForumPost] = []
+var forumComments : [String:[ForumComment]] = [:]
 
 class ForumViewController : UITableViewController {
     
     var cellId = "ForumCell"
     var forumAPIClient : ForumAPIClient = {
         let client = ForumAPIClient()
-        client.GetPosts()
         return client
     }()
+    
+    var refreshCtrl : UIRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +29,11 @@ class ForumViewController : UITableViewController {
         tableView.register(ForumCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
         navigationItem.title = "Forum"
-        
-        loadUserVoteMap()
+        tableView.refreshControl = refreshCtrl
+        refreshCtrl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return forumPosts.count
     }
 
@@ -39,6 +41,8 @@ class ForumViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ForumCell
         cell.forumPost = forumPosts[indexPath.row]
         cell.setCell()
+        cell.layoutIfNeeded()
+        cell.layoutSubviews()
         return cell
     }
     
@@ -51,15 +55,37 @@ class ForumViewController : UITableViewController {
 //            self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @objc
+    private func refreshTable(_ sender : Any) {
+        loadData()
+        refreshCtrl.endRefreshing()
+    }
+    
+    func loadData() {
+        loadUserVoteMap()
+        loadPosts()
+        tableView.reloadData()
+    }
+    
     func loadUserVoteMap() {
-        let client = ForumAPIClient()
-        client.GetVoteMap(localProfile._id) { result in
+        forumAPIClient.GetVoteMap(localProfile._id) { result in
             switch result {
             case .success(let map):
                 userVoteMap = map
             case .failure(let error):
                 print("Error retrieving userVoteMap: \(error)")
                 userVoteMap.userId = localProfile._id
+            }
+        }
+    }
+    
+    func loadPosts() {
+        forumAPIClient.GetPosts() { result in
+            switch result {
+            case .success(let posts):
+                forumPosts = posts
+            case .failure(let error):
+                print("Error retrieving posts: \(error)")
             }
         }
     }

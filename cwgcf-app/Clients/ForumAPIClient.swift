@@ -9,21 +9,37 @@
 import Foundation
 import UIKit
 
-var forumPosts : [ForumPost] = []
-var forumComments : [String:[ForumComment]] = [:]
-
 class ForumAPIClient {
-    func GetPosts(){
+    func GetPosts(completionHandler: @escaping (Result<[ForumPost], Error>) -> Void){
         let url = URL(string: mongoURL + "/forum/post")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                print("error: \(error)")
+                completionHandler(.failure(error))
             } else {
                 if let response = response as? HTTPURLResponse {
                     print("statusCode: \(response.statusCode)")
                 }
                 if let data = data {
-                    forumPosts = try! JSONDecoder().decode([ForumPost].self, from: data)
+                    let posts = try? JSONDecoder().decode([ForumPost].self, from: data)
+                    completionHandler(.success(posts ?? []))
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func GetPost(_ id: String, completionHandler: @escaping (Result<ForumPost, Error>) -> Void){
+        let url = URL(string: mongoURL + "/forum/post/\(id)")!
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                completionHandler(.failure(error))
+            } else {
+                if let response = response as? HTTPURLResponse {
+                    print("statusCode: \(response.statusCode)")
+                }
+                if let data = data {
+                    let post = try? JSONDecoder().decode(ForumPost.self, from: data)
+                    completionHandler(.success(post ?? ForumPost()))
                 }
             }
         }
@@ -48,8 +64,8 @@ class ForumAPIClient {
         task.resume()
     }
     
-    func Vote(userID: String, voteID: String, isPost: Bool, previousVote: Int, currentVote: Int) {
-        let req = ForumVoteRequest(_userId: userID, _voteId: voteID, _isPost: isPost, _offset: currentVote - previousVote)
+    func Vote(userID: String, voteID: String, isPost: Bool, offset: Int) {
+        let req = ForumVoteRequest(_userId: userID, _voteId: voteID, _isPost: isPost, _offset: offset)
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(req)
