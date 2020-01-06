@@ -20,12 +20,13 @@ class ForumVotes : Codable {
     var votesSum : Int64 = 0
     
     func getRankStr() -> String {
-        let abs = Double(votesSum)
+        var abs = Double(votesSum)
         var res : Int64 = 0
         var sign : Double = 1
         var suffix = ""
         if abs < 0 {
             // Could cause overflow
+            abs = -abs
             sign = -1
         }
         
@@ -47,6 +48,16 @@ class ForumVotes : Codable {
         // print("Outer result: \(res)")
         return "\(res)\(suffix)"
     }
+    
+    func localUpvote() -> String {
+        votesSum += 1
+        return getRankStr()
+    }
+    
+    func localDownvote() -> String {
+        votesSum -= 1
+        return getRankStr()
+    }
 }
 
 class ForumComment : Codable {
@@ -54,13 +65,9 @@ class ForumComment : Codable {
     var userId : String = ""
     var userProfile : Profile = Profile()
     var content : String = ""
-    var timestamp : Int64 = 0
+    var createdAt : Int64 = 0
+    var updatedAt : Int64 = 0
     var forumVotes : ForumVotes = ForumVotes()
-}
-
-class ForumSubComments : Codable {
-    var parentId : String = ""
-    var commentIds : [String] = []
 }
 
 class ForumPost : Codable {
@@ -70,7 +77,8 @@ class ForumPost : Codable {
     var title : String = ""
     var content : String = ""
     var image : String = ""
-    var timestamp : Int64 = 0
+    var createdAt : Int64 = 0
+    var updatedAt : Int64 = 0
     var forumVotes : ForumVotes = ForumVotes()
     
     init() {
@@ -83,7 +91,8 @@ class ForumPost : Codable {
         title = _title
         content = _content
         image = _image
-        timestamp = _timestamp
+        createdAt = _timestamp
+        updatedAt = _timestamp
     }
     
     func getTitle() -> String {
@@ -101,7 +110,7 @@ class ForumPost : Codable {
     }
     
     func getTime() -> String {
-        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let date = Date(timeIntervalSince1970: TimeInterval(createdAt))
         return date.toStrWithFormat("yyyy MMM dd HH:mm:ss")
     }
     
@@ -129,4 +138,23 @@ class ForumPost : Codable {
     private func getImageLocal() -> UIImage? {
         return UIImage(named: image) ?? nil
     }
+}
+
+class ForumVoteRequest : Codable {
+    var voteId : String = ""
+    var userId : String = ""
+    var isPost : Bool = false
+    var offset : Int = 0
+    
+    init(_userId: String, _voteId: String, _isPost: Bool, _offset: Int) {
+        userId = _userId
+        voteId = _voteId
+        isPost = _isPost
+        offset = _offset
+    }
+}
+
+class ForumVoteMap : Codable {
+    var userId : String = ""
+    var voteMap : [String:Int] = [:]
 }

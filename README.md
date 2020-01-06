@@ -2,6 +2,8 @@
 
 ### App for the 10th Conference of the World Guangdong Community Federation
 
+[Design Doc WIP](https://docs.google.com/document/d/1BqVpC1Ynw9vWjknBO6aPiC2lEnES23qpY4z9LDvu0y8/edit#)
+
 ## Demo
 
 [youtube link](https://www.youtube.com/embed/yfJPUbhcLnA)

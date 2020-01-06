@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 class ForumCell : UITableViewCell {
+    // 0: not voted; 1: upvoted; -1: downvoted
+    var voteStatus : Int = 0
+    
+    var forumAPIClient : ForumAPIClient = ForumAPIClient()
+    
     lazy var forumPost: ForumPost = {
         let p = ForumPost()
         return p
@@ -55,6 +60,8 @@ class ForumCell : UITableViewCell {
         return setVotesView()
     }()
     lazy var voteCount = UILabel()
+    lazy var thumbsUp = UIButton()
+    lazy var thumbsDown = UIButton()
     
     lazy var bottomBorder : UIView = {
         let v = UIView()
@@ -85,11 +92,11 @@ class ForumCell : UITableViewCell {
             titleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             titleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
-            subTitleView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 10),
+            subTitleView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 5),
             subTitleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             subTitleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
-            imgView.topAnchor.constraint(equalTo: subTitleView.bottomAnchor, constant: 20),
+            imgView.topAnchor.constraint(equalTo: subTitleView.bottomAnchor, constant: 10),
             imgView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             imgView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             imgView.heightAnchor.constraint(equalToConstant: 200),
@@ -129,7 +136,8 @@ class ForumCell : UITableViewCell {
         username.text = forumPost.userProfile.name
         timestamp.text = forumPost.getTime()
         
-        voteCount.text = forumPost.forumVotes.getRankStr()
+        voteStatus = userVoteMap.voteMap[forumPost._id] ?? 0
+        refreshVoteValues()
     }
     
     private func setUserView() -> UIView {
@@ -180,7 +188,6 @@ class ForumCell : UITableViewCell {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         
-        let thumbsUp = UIButton()
         v.addSubview(thumbsUp)
         thumbsUp.translatesAutoresizingMaskIntoConstraints = false
         thumbsUp.layer.masksToBounds = true
@@ -188,7 +195,6 @@ class ForumCell : UITableViewCell {
         thumbsUp.tintColor = .lightGray
         thumbsUp.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         
-        let thumbsDown = UIButton()
         v.addSubview(thumbsDown)
         thumbsDown.translatesAutoresizingMaskIntoConstraints = false
         thumbsDown.layer.masksToBounds = true
@@ -222,6 +228,49 @@ class ForumCell : UITableViewCell {
             v.bottomAnchor.constraint(equalTo: thumbsUp.bottomAnchor, constant: 10),
         ])
         
+        thumbsUp.addTarget(self, action: #selector(tapUpvote(_:)), for: .touchUpInside)
+        thumbsDown.addTarget(self, action: #selector(tapDownvote(_:)), for: .touchUpInside)
+        
         return v
+    }
+    
+    @objc
+    func tapUpvote(_ sender: Any) {
+        let target = voteStatus == 1 ? 0 : 1
+        forumAPIClient.Vote(userID: localProfile._id, voteID: forumPost._id, isPost: true, previousVote: voteStatus, currentVote: target)
+        forumPost.forumVotes.votesSum += Int64(target - voteStatus)
+        voteStatus = target
+        refreshVoteValues()
+    }
+
+    @objc
+    func tapDownvote(_ sender: Any) {
+        let target = voteStatus == -1 ? 0 : -1
+        forumAPIClient.Vote(userID: localProfile._id, voteID: forumPost._id, isPost: true, previousVote: voteStatus, currentVote: target)
+        forumPost.forumVotes.votesSum += Int64(target - voteStatus)
+        voteStatus = target
+        refreshVoteValues()
+    }
+    
+    private func refreshVoteValues() {
+        voteCount.text = forumPost.forumVotes.getRankStr()
+        updateThumbs()
+    }
+    
+    func updateThumbs() {
+        switch voteStatus {
+        case 0:
+            thumbsUp.tintColor = .lightGray
+            thumbsDown.tintColor = .lightGray
+        case 1:
+            thumbsUp.tintColor = darkRed
+            thumbsDown.tintColor = .lightGray
+        case -1:
+            thumbsUp.tintColor = .lightGray
+            thumbsDown.tintColor = darkRed
+        default:
+            thumbsUp.tintColor = .lightGray
+            thumbsDown.tintColor = .lightGray
+        }
     }
 }

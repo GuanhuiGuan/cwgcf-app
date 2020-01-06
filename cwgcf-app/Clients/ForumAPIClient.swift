@@ -48,6 +48,57 @@ class ForumAPIClient {
         task.resume()
     }
     
+    func Vote(userID: String, voteID: String, isPost: Bool, previousVote: Int, currentVote: Int) {
+        let req = ForumVoteRequest(_userId: userID, _voteId: voteID, _isPost: isPost, _offset: currentVote - previousVote)
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(req)
+            VoteInternal(data)
+        } catch {
+            print("Error encoding request: \(error)")
+        }
+    }
+    
+    private func VoteInternal(_ requestBody: Data) {
+        let url = URL(string: mongoURL + "/forum/vote")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = requestBody
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("error: \(error)")
+            } else {
+                if let response = response as? HTTPURLResponse {
+                    print("statusCode: \(response.statusCode)")
+                }
+                if let data = data {
+                    print(data)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func GetVoteMap(_ id: String, completionHandler: @escaping (Result<ForumVoteMap, Error>) -> Void) {
+        let url = URL(string: mongoURL + "/forum/vote/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completionHandler(.failure(error))
+            } else {
+                if let response = response as? HTTPURLResponse {
+                    print("statusCode: \(response.statusCode)")
+                }
+                if let data = data {
+                    let voteMap = try? JSONDecoder().decode(ForumVoteMap.self, from: data)
+                    completionHandler(.success(voteMap ?? ForumVoteMap()))
+                }
+            }
+        }
+        task.resume()
+    }
+    
     // Not implemented
     func PushPost() {
         

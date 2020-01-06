@@ -10,6 +10,8 @@ import UIKit
 
 var saveS3Data : Bool = true
 
+var localProfile : Profile = Profile("5e0486285fba501555c8fd6d", name: "Steve Jobs", title: "Founder of Apple", avatarUrl: "steve_jobs", description: "")
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
