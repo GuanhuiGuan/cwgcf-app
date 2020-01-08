@@ -144,17 +144,23 @@ class ForumVoteRequest : Codable {
     var voteId : String = ""
     var userId : String = ""
     var isPost : Bool = false
-    var offset : Int = 0
+    var isUpvote : Bool = true
+    var updatedAt : Int64 = 0
     
-    init(_userId: String, _voteId: String, _isPost: Bool, _offset: Int) {
+    init(_userId: String, _voteId: String, _isPost: Bool, _isUpvote: Bool) {
         userId = _userId
         voteId = _voteId
         isPost = _isPost
-        offset = _offset
+        isUpvote = _isUpvote
     }
 }
 
 class ForumVoteMap : Codable {
     var userId : String = ""
-    var voteMap : [String:Int] = [:]
+    var voteMap : [String:ForumVoteWithTime] = [:]
+}
+
+class ForumVoteWithTime : Codable {
+    var voteStatus : Int = 0
+    var updatedAt : Int64 = 0
 }

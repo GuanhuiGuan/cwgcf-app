@@ -64,31 +64,42 @@ class ForumAPIClient {
         task.resume()
     }
     
-    func Vote(userID: String, voteID: String, isPost: Bool, offset: Int) {
-        let req = ForumVoteRequest(_userId: userID, _voteId: voteID, _isPost: isPost, _offset: offset)
+    func Vote(userID: String, voteID: String, isPost: Bool, isUpvote: Bool) -> Int {
+        let req = ForumVoteRequest(_userId: userID, _voteId: voteID, _isPost: isPost, _isUpvote: isUpvote)
         let encoder = JSONEncoder()
+        var currentStatus = 0
         do {
             let data = try encoder.encode(req)
-            VoteInternal(data)
+            VoteInternal(data) { result in
+                switch result {
+                case .success(let val):
+                    currentStatus = val
+                case .failure(let error):
+                    print("Error retrieving vote status: \(error)")
+                }
+            }
         } catch {
             print("Error encoding request: \(error)")
         }
+        return currentStatus
     }
     
-    private func VoteInternal(_ requestBody: Data) {
+    private func VoteInternal(_ requestBody: Data, completionHandler: @escaping (Result<Int, Error>) -> Void) {
         let url = URL(string: mongoURL + "/forum/vote")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = requestBody
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                print("error: \(error)")
+                completionHandler(.failure(error))
             } else {
                 if let response = response as? HTTPURLResponse {
                     print("statusCode: \(response.statusCode)")
                 }
                 if let data = data {
-                    print(data)
+                    let stringInt = String.init(data: data, encoding: String.Encoding.utf8)
+                    let int = Int.init(stringInt ?? "")
+                    completionHandler(.success(int ?? 0))
                 }
             }
         }

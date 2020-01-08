@@ -20,6 +20,11 @@ class ForumCell : UITableViewCell {
         return p
     }()
     
+    lazy var forumPostV2: ForumPostV2 = {
+        let p = ForumPostV2()
+        return p
+    }()
+    
     lazy var imgView : UIImageView = {
         let v = UIImageView()
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -79,6 +84,7 @@ class ForumCell : UITableViewCell {
     lazy var voteCount = UILabel()
     lazy var thumbsUp = UIButton()
     lazy var thumbsDown = UIButton()
+    lazy var votesActivityIndicator = UIActivityIndicatorView()
     
     lazy var bottomBorder : UIView = {
         let v = UIView()
@@ -131,27 +137,27 @@ class ForumCell : UITableViewCell {
     }
     
     func setCell() {
-        setImage()
+        setImageConstraints()
+        titleView.text = forumPostV2.getTitle()
+        subTitleView.text = forumPostV2.getContent()
         
-        titleView.text = forumPost.getTitle()
-        subTitleView.text = forumPost.getSubTitle()
-        
-        let img = forumPost.getImage()
+        let img = forumPostV2.userProfile.getImage()
         if img == nil {
             avatar.image = UIImage(systemName: "person.fill")
             avatar.tintColor = darkRed
         } else {
             avatar.image = img
         }
-        username.text = forumPost.userProfile.name
-        timestamp.text = forumPost.getTime()
+        username.text = forumPostV2.userProfile.name
+        timestamp.text = forumPostV2.getTime()
         
-        voteStatus = userVoteMap.voteMap[forumPost._id] ?? 0
-        refreshVoteValues()
+        // forumVotes = cachedForumVotes[forumPostV2.voteId] ?? ForumVotesV2()
+        updateForumVotes()
+        updateVotesView()
     }
     
-    private func setImage() {
-        let image = forumPost.getImage()
+    private func setImageConstraints() {
+        let image = forumPostV2.getImage()
         if image != nil {
             imgView.image = image
             imgEnabledTopConstraint.isActive = true
@@ -235,6 +241,10 @@ class ForumCell : UITableViewCell {
         voteCount.numberOfLines = 1
         voteCount.textAlignment = .center
         
+        v.addSubview(votesActivityIndicator)
+        votesActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        votesActivityIndicator.color = .lightGray
+        
         NSLayoutConstraint.activate([
             thumbsUp.topAnchor.constraint(equalTo: v.topAnchor, constant: 10),
             thumbsUp.leadingAnchor.constraint(equalTo: v.leadingAnchor, constant: 2),
@@ -251,6 +261,10 @@ class ForumCell : UITableViewCell {
             voteCount.trailingAnchor.constraint(equalTo: thumbsDown.leadingAnchor, constant: -2),
             voteCount.widthAnchor.constraint(equalToConstant: 50),
             
+            votesActivityIndicator.centerXAnchor.constraint(equalTo: v.centerXAnchor, constant: 0),
+            votesActivityIndicator.centerYAnchor.constraint(equalTo: v.centerYAnchor, constant: 0),
+            votesActivityIndicator.heightAnchor.constraint(equalToConstant: 10),
+            
             v.bottomAnchor.constraint(equalTo: thumbsUp.bottomAnchor, constant: 10),
         ])
         
@@ -262,26 +276,68 @@ class ForumCell : UITableViewCell {
     
     @objc
     func tapUpvote(_ sender: Any) {
-        loadPost()
-        loadUserVoteMap()
-        voteStatus = userVoteMap.voteMap[forumPost._id] ?? 0
-        let target = voteStatus == 1 ? 0 : 1
-        forumAPIClient.Vote(userID: localProfile._id, voteID: forumPost._id, isPost: true, offset: target - voteStatus)
-        forumPost.forumVotes.votesSum += Int64(target - voteStatus)
-        voteStatus = target
-        refreshVoteValues()
+        tapOneThumb(true)
     }
 
     @objc
     func tapDownvote(_ sender: Any) {
-        loadPost()
-        loadUserVoteMap()
-        voteStatus = userVoteMap.voteMap[forumPost._id] ?? 0
-        let target = voteStatus == -1 ? 0 : -1
-        forumAPIClient.Vote(userID: localProfile._id, voteID: forumPost._id, isPost: true, offset: target - voteStatus)
-        forumPost.forumVotes.votesSum += Int64(target - voteStatus)
-        voteStatus = target
-        refreshVoteValues()
+        tapOneThumb(false)
+    }
+    
+    func tapOneThumb(_ isUpvote : Bool) {
+        votesViewShowIndicator()
+        let epoch = Int64(Date().timeIntervalSince1970)
+        let vote = getCachedForumVotes()
+        vote.metadata.updatedAt = epoch
+        let res = determinVoteStatusAndOffset(status: vote.voteStatus, isUpvote: isUpvote)
+        vote.voteStatus = res.0
+        vote.count += res.1
+        insertCachedForumVotes(vote)
+        // Do something to send update to backend
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.updateVotesView()
+            self.votesViewHideIndicator()
+        }
+    }
+    
+    func votesViewShowIndicator() {
+        thumbsUp.isEnabled = false
+        thumbsDown.isEnabled = false
+        voteCount.isHidden = true
+        votesActivityIndicator.startAnimating()
+    }
+    
+    func votesViewHideIndicator() {
+        thumbsUp.isEnabled = true
+        thumbsDown.isEnabled = true
+        voteCount.isHidden = false
+        votesActivityIndicator.stopAnimating()
+    }
+    
+    func determinVoteStatusAndOffset(status : Int, isUpvote : Bool) -> (Int, Int64) {
+        switch status {
+        case 0:
+            if isUpvote {
+                return (1, 1)
+            } else {
+                return (-1, -1)
+            }
+        case 1:
+            if isUpvote {
+                return (0, -1)
+            } else {
+                return (-1, -2)
+            }
+        case -1:
+            if isUpvote {
+                return (1, 2)
+            } else {
+                return (0, 1)
+            }
+        default:
+            return (0, 0)
+        }
     }
     
     func loadUserVoteMap() {
@@ -312,20 +368,44 @@ class ForumCell : UITableViewCell {
         updateThumbs()
     }
     
+    func updateVotesView() {
+        self.voteCount.text = "\(getCachedForumVotes().count)"
+        updateThumbs()
+    }
+    
     func updateThumbs() {
-        switch voteStatus {
+        switch getCachedForumVotes().voteStatus {
         case 0:
             thumbsUp.tintColor = .lightGray
             thumbsDown.tintColor = .lightGray
+            break
         case 1:
             thumbsUp.tintColor = darkRed
             thumbsDown.tintColor = .lightGray
+            break
         case -1:
             thumbsUp.tintColor = .lightGray
             thumbsDown.tintColor = darkRed
+            break
         default:
             thumbsUp.tintColor = .lightGray
             thumbsDown.tintColor = .lightGray
+        }
+    }
+    
+    func getCachedForumVotes() -> ForumVotesV2 {
+        return cachedForumVotes[forumPostV2.voteId] ?? ForumVotesV2()
+    }
+    
+    func insertCachedForumVotes(_ vote : ForumVotesV2) {
+        cachedForumVotes[forumPostV2.voteId] = vote
+    }
+    
+    func updateForumVotes() {
+        let fetchedVote = fetchedForumVotes[forumPostV2.voteId] ?? ForumVotesV2()
+        let cachedVote = cachedForumVotes[forumPostV2.voteId] ?? ForumVotesV2()
+        if fetchedVote.metadata.updatedAt >= cachedVote.metadata.updatedAt {
+            cachedForumVotes[forumPostV2.voteId] = fetchedVote
         }
     }
 }

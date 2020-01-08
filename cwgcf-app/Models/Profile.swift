@@ -58,4 +58,30 @@ class Profile : Codable {
         }
         return description
     }
+    
+    
+    func getImage() -> UIImage? {
+        if saveS3Data {
+            return getImageLocal()
+        } else {
+            return getImageWeb()
+        }
+    }
+    
+    private func getImageWeb() -> UIImage? {
+        if avatarUrl.isEmpty {
+            return nil
+        }
+        guard
+            let imageURL = URL(string: avatarUrl),
+            let imageData = try? Data(contentsOf: imageURL)
+        else {
+            return nil
+        }
+        return UIImage(data: imageData) ?? nil
+    }
+    
+    private func getImageLocal() -> UIImage? {
+        return UIImage(named: avatarUrl) ?? nil
+    }
 }
