@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ForumAPIClient {
-    func GetPosts(completionHandler: @escaping (Result<[ForumPostV2], Error>) -> Void){
+    func GetPosts(completionHandler: @escaping (Result<GetForumPostsResponse, Error>) -> Void){
         let url = URL(string: mongoURL + "/forum/v2/post")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -20,8 +20,8 @@ class ForumAPIClient {
                     print("statusCode: \(response.statusCode)")
                 }
                 if let data = data {
-                    let posts = try? JSONDecoder().decode([ForumPostV2].self, from: data)
-                    completionHandler(.success(posts ?? []))
+                    let res = try? JSONDecoder().decode(GetForumPostsResponse.self, from: data)
+                    completionHandler(.success(res ?? GetForumPostsResponse()))
                 }
             }
         }

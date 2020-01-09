@@ -403,8 +403,12 @@ class ForumCell : UITableViewCell {
     
     func updateForumVotes() {
         let fetchedVote = fetchedForumVotes[forumPostV2.voteId] ?? ForumVotesV2()
-        let cachedVote = cachedForumVotes[forumPostV2.voteId] ?? ForumVotesV2()
-        if fetchedVote.metadata.updatedAt >= cachedVote.metadata.updatedAt {
+        let cachedVote = cachedForumVotes[forumPostV2.voteId]
+        if cachedVote == nil {
+            cachedForumVotes[forumPostV2.voteId] = fetchedVote
+            return
+        }
+        if fetchedVote.metadata.updatedAt >= cachedVote!.metadata.updatedAt {
             cachedForumVotes[forumPostV2.voteId] = fetchedVote
         }
     }

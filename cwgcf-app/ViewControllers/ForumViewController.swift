@@ -68,51 +68,8 @@ class ForumViewController : UITableViewController {
         }
     }
     
-    func loadLocalData() {
-    //        loadUserVoteMap()
-            // loadPosts()
-            forumPostsV2 = [
-                ForumPostV2("0",
-                            profile: Profile("0", name: "skywalker", title: "", avatarUrl: "steve_jobs", description: ""),
-                            title: "My First Post", content: "Hey there!", img: "", createdAt: 1578472771, voteId: "4"),
-                ForumPostV2("2",
-                profile: Profile("1", name: "Pekka", title: "", avatarUrl: "bill_gates", description: ""),
-                title: "Who are you?", content: "Woo!", img: "zhang_yiming", createdAt: 1578472800, voteId: "2"),
-            ]
-            
-            fetchedForumVotes = [
-                "5e17033ecd7f7fac9aa02771": ForumVotesV2("5e17033ecd7f7fac9aa02771", count: 4, status: 1, ts: 1578472800),
-                "5e170371cd7f7fac9aa02773": ForumVotesV2("5e170371cd7f7fac9aa02773", count: -3, status: 0, ts: 1578472900),
-            ]
-            
-            cachedForumVotes = [
-                "5e17033ecd7f7fac9aa02771": ForumVotesV2("25e17033ecd7f7fac9aa02771", count: 0, status: 1, ts: 1578472800),
-                "5e170371cd7f7fac9aa02773": ForumVotesV2("5e170371cd7f7fac9aa02773", count: 5, status: 0, ts: 1578472900),
-            ]
-            self.tableView.reloadData()
-        }
-    
     func loadData() {
-//        loadUserVoteMap()
         loadPosts()
-//        forumPostsV2 = [
-//            ForumPostV2("0",
-//                        profile: Profile("0", name: "skywalker", title: "", avatarUrl: "steve_jobs", description: ""),
-//                        title: "My First Post", content: "Hey there!", img: "", createdAt: 1578472771, voteId: "4"),
-//            ForumPostV2("2",
-//            profile: Profile("1", name: "Pekka", title: "", avatarUrl: "bill_gates", description: ""),
-//            title: "Who are you?", content: "Woo!", img: "zhang_yiming", createdAt: 1578472800, voteId: "2"),
-//        ]
-        
-        fetchedForumVotes = [
-            "5e17033ecd7f7fac9aa02771": ForumVotesV2("5e17033ecd7f7fac9aa02771", count: 4, status: 1, ts: 1578472800),
-            "5e170371cd7f7fac9aa02773": ForumVotesV2("5e170371cd7f7fac9aa02773", count: -3, status: 0, ts: 1578472900),
-        ]
-        
-        cachedForumVotes = [
-            "5e17033ecd7f7fac9aa02771": ForumVotesV2("25e17033ecd7f7fac9aa02771", count: 0, status: 1, ts: 1578472800),
-            "5e170371cd7f7fac9aa02773": ForumVotesV2("5e170371cd7f7fac9aa02773", count: 5, status: 0, ts: 1578472900),
-        ]
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.tableView.reloadData()
         }
@@ -134,7 +91,8 @@ class ForumViewController : UITableViewController {
         forumAPIClient.GetPosts() { result in
             switch result {
             case .success(let posts):
-                self.forumPostsV2 = posts
+                self.forumPostsV2 = posts.ForumPosts
+                fetchedForumVotes = posts.ForumVotesMap
             case .failure(let error):
                 print("Error retrieving posts: \(error)")
             }

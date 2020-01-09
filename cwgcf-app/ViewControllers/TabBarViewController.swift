@@ -17,7 +17,7 @@ class TabBarViewController: UITabBarController {
         client.GetAllProfiles()
         
         let forumViewController = ForumViewController()
-        forumViewController.loadLocalData()
+        forumViewController.loadData()
         
         self.viewControllers = [
             setupChildVC(HomeViewController(), title: "Home", tag: 0, iconName: "house"),

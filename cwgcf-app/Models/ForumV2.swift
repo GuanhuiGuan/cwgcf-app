@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+class GetForumPostsResponse : Codable {
+    var ForumPosts : [ForumPostV2] = []
+    var ForumVotesMap : [String : ForumVotesV2] = [:]
+}
+
 class ForumPostV2 : Codable {
     var _id : String = ""
     var userProfile : Profile = Profile()
