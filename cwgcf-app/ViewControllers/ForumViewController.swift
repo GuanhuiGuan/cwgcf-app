@@ -63,50 +63,59 @@ class ForumViewController : UITableViewController {
     @objc
     private func refreshTable(_ sender : Any) {
         loadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.refreshCtrl.endRefreshing()
         }
     }
     
+    func loadLocalData() {
+    //        loadUserVoteMap()
+            // loadPosts()
+            forumPostsV2 = [
+                ForumPostV2("0",
+                            profile: Profile("0", name: "skywalker", title: "", avatarUrl: "steve_jobs", description: ""),
+                            title: "My First Post", content: "Hey there!", img: "", createdAt: 1578472771, voteId: "4"),
+                ForumPostV2("2",
+                profile: Profile("1", name: "Pekka", title: "", avatarUrl: "bill_gates", description: ""),
+                title: "Who are you?", content: "Woo!", img: "zhang_yiming", createdAt: 1578472800, voteId: "2"),
+            ]
+            
+            fetchedForumVotes = [
+                "5e17033ecd7f7fac9aa02771": ForumVotesV2("5e17033ecd7f7fac9aa02771", count: 4, status: 1, ts: 1578472800),
+                "5e170371cd7f7fac9aa02773": ForumVotesV2("5e170371cd7f7fac9aa02773", count: -3, status: 0, ts: 1578472900),
+            ]
+            
+            cachedForumVotes = [
+                "5e17033ecd7f7fac9aa02771": ForumVotesV2("25e17033ecd7f7fac9aa02771", count: 0, status: 1, ts: 1578472800),
+                "5e170371cd7f7fac9aa02773": ForumVotesV2("5e170371cd7f7fac9aa02773", count: 5, status: 0, ts: 1578472900),
+            ]
+            self.tableView.reloadData()
+        }
+    
     func loadData() {
 //        loadUserVoteMap()
-//        loadPosts()
-        forumPostsV2 = [
-            ForumPostV2("0",
-                        profile: Profile("0", name: "skywalker", title: "", avatarUrl: "steve_jobs", description: ""),
-                        title: "My First Post", content: "Hey there!", img: "", createdAt: 1578472771, voteId: "4"),
-            ForumPostV2("2",
-            profile: Profile("1", name: "Pekka", title: "", avatarUrl: "bill_gates", description: ""),
-            title: "Who are you?", content: "Woo!", img: "zhang_yiming", createdAt: 1578472800, voteId: "2"),
-        ]
+        loadPosts()
+//        forumPostsV2 = [
+//            ForumPostV2("0",
+//                        profile: Profile("0", name: "skywalker", title: "", avatarUrl: "steve_jobs", description: ""),
+//                        title: "My First Post", content: "Hey there!", img: "", createdAt: 1578472771, voteId: "4"),
+//            ForumPostV2("2",
+//            profile: Profile("1", name: "Pekka", title: "", avatarUrl: "bill_gates", description: ""),
+//            title: "Who are you?", content: "Woo!", img: "zhang_yiming", createdAt: 1578472800, voteId: "2"),
+//        ]
         
         fetchedForumVotes = [
-            "2": ForumVotesV2("2", count: 4, status: 1, ts: 1578472800),
-            "4": ForumVotesV2("4", count: -3, status: 0, ts: 1578472900),
+            "5e17033ecd7f7fac9aa02771": ForumVotesV2("5e17033ecd7f7fac9aa02771", count: 4, status: 1, ts: 1578472800),
+            "5e170371cd7f7fac9aa02773": ForumVotesV2("5e170371cd7f7fac9aa02773", count: -3, status: 0, ts: 1578472900),
         ]
-//        print("TIMESTAMP: \(Date().timeIntervalSince1970)")
-//        if Date().timeIntervalSince1970 > 1578475300 {
-//            fetchedForumVotes = [
-//                "2": ForumVotesV2("2", count: 100, status: 0, ts: 1578472900),
-//                "4": ForumVotesV2("4", count: -30, status: -1, ts: 1578472890),
-//            ]
-//            
-//            forumPostsV2 = [
-//                ForumPostV2("2",
-//                profile: Profile("1", name: "Pekka", title: "", avatarUrl: "bill_gates", description: ""),
-//                title: "Who are you?", content: "Woo!", img: "zhang_yiming", createdAt: 1578472800, voteId: "2"),
-//                ForumPostV2("0",
-//                profile: Profile("0", name: "skywalker", title: "", avatarUrl: "darth_vader", description: ""),
-//                title: "My First Post", content: "Hey there!", img: "", createdAt: 1578472771, voteId: "4"),
-//            ]
-//        }
         
         cachedForumVotes = [
-            "2": ForumVotesV2("2", count: 4, status: 1, ts: 1578472800),
-            "4": ForumVotesV2("4", count: -3, status: 0, ts: 1578472900),
+            "5e17033ecd7f7fac9aa02771": ForumVotesV2("25e17033ecd7f7fac9aa02771", count: 0, status: 1, ts: 1578472800),
+            "5e170371cd7f7fac9aa02773": ForumVotesV2("5e170371cd7f7fac9aa02773", count: 5, status: 0, ts: 1578472900),
         ]
-        
-        tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.tableView.reloadData()
+        }
     }
     
     func loadUserVoteMap() {
@@ -125,7 +134,7 @@ class ForumViewController : UITableViewController {
         forumAPIClient.GetPosts() { result in
             switch result {
             case .success(let posts):
-                forumPosts = posts
+                self.forumPostsV2 = posts
             case .failure(let error):
                 print("Error retrieving posts: \(error)")
             }
