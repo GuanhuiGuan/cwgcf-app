@@ -53,3 +53,32 @@ class ForumVotesV2 : Codable {
         metadata.updatedAt = ts
     }
 }
+
+class ForumVoteUpdateRequest : Codable {
+    var voteId : String = ""
+    var offset : Int64 = 0
+    var voteStatus : Int = 0
+    var userId : String = ""
+    var metadata : Metadata = Metadata()
+    
+    init() {}
+    
+    init(voteId: String, offset: Int64, voteStatus: Int, userId: String, ts: Int64) {
+        self.voteId = voteId
+        self.offset = offset
+        self.voteStatus = voteStatus
+        self.userId = userId
+        metadata.createdAt = ts
+        metadata.updatedAt = ts
+    }
+}
+
+class GetForumVoteMapRequest : Codable {
+    var userId : String = ""
+    
+    init() {}
+    
+    init(userId: String) {
+        self.userId = userId
+    }
+}

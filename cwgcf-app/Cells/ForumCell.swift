@@ -294,6 +294,7 @@ class ForumCell : UITableViewCell {
         vote.count += res.1
         insertCachedForumVotes(vote)
         // Do something to send update to backend
+        sendVoteUpdate(offset: res.1, voteStatus: res.0)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.updateVotesView()
@@ -411,5 +412,10 @@ class ForumCell : UITableViewCell {
         if fetchedVote.metadata.updatedAt >= cachedVote!.metadata.updatedAt {
             cachedForumVotes[forumPostV2.voteId] = fetchedVote
         }
+    }
+    
+    func sendVoteUpdate(offset: Int64, voteStatus: Int) {
+        let request = ForumVoteUpdateRequest(voteId: getCachedForumVotes()._id, offset: offset, voteStatus: voteStatus, userId: localProfile._id, ts: Int64(Date().timeIntervalSince1970))
+        self.forumAPIClient.Vote(request)
     }
 }
