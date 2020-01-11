@@ -77,6 +77,9 @@ class ScheduleEvent {
     var hostId : String = ""
     var attendeeIds : [String] = []
     var registered : Bool = false
+    // Profiles will be populated when the detailed event page is loaded
+    var host : Profile = Profile()
+    var attendees : [Profile] = []
     
     init(name: String, interval: Interval, location: String, description: String, colorHex: String, hostId: String, attendeeIds: [String], registered: Bool) {
         self.name = name
@@ -99,6 +102,13 @@ class ScheduleEvent {
         self.hostId = hostId
         self.attendeeIds = attendeeIds
         self.registered = registered
+    }
+    
+    func getDescription() -> String {
+        if description.isEmpty {
+            return "No description"
+        }
+        return description
     }
     
     func getColor() -> UIColor {

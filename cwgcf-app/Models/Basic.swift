@@ -1,5 +1,5 @@
 //
-//  basic.swift
+//  Basic.swift
 //  cwgcf-app
 //
 //  Created by Guanhui Guan on 1/8/20.

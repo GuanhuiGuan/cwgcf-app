@@ -46,7 +46,7 @@
 		48685EFC23BDF00100DAC780 /* Forum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EFB23BDF00100DAC780 /* Forum.swift */; };
 		48685F0023BF170700DAC780 /* ForumAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48685EFF23BF170700DAC780 /* ForumAPIClient.swift */; };
 		48685F0223C16BE700DAC780 /* shenzhen.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 48685F0123C16BE700DAC780 /* shenzhen.gpx */; };
-		486CE45423C5C42B00D862D6 /* basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE45323C5C42B00D862D6 /* basic.swift */; };
+		486CE45423C5C42B00D862D6 /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE45323C5C42B00D862D6 /* Basic.swift */; };
 		486CE45623C5C4CC00D862D6 /* ForumV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE45523C5C4CC00D862D6 /* ForumV2.swift */; };
 		486CE45823C5C77400D862D6 /* ForumV2Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE45723C5C77400D862D6 /* ForumV2Ext.swift */; };
 		486CE45C23C986DE00D862D6 /* ScheduleCellSimplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE45B23C986DE00D862D6 /* ScheduleCellSimplify.swift */; };
@@ -124,7 +124,7 @@
 		48685EFB23BDF00100DAC780 /* Forum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forum.swift; sourceTree = "<group>"; };
 		48685EFF23BF170700DAC780 /* ForumAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumAPIClient.swift; sourceTree = "<group>"; };
 		48685F0123C16BE700DAC780 /* shenzhen.gpx */ = {isa = PBXFileReference; lastKnownFileType = text; path = shenzhen.gpx; sourceTree = "<group>"; };
-		486CE45323C5C42B00D862D6 /* basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = basic.swift; sourceTree = "<group>"; };
+		486CE45323C5C42B00D862D6 /* Basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
 		486CE45523C5C4CC00D862D6 /* ForumV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumV2.swift; sourceTree = "<group>"; };
 		486CE45723C5C77400D862D6 /* ForumV2Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumV2Ext.swift; sourceTree = "<group>"; };
 		486CE45B23C986DE00D862D6 /* ScheduleCellSimplify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCellSimplify.swift; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 				48685EEB23B5F36300DAC780 /* Photo.swift */,
 				48685EF523B805BB00DAC780 /* ScheduleEvent.swift */,
 				48685EFB23BDF00100DAC780 /* Forum.swift */,
-				486CE45323C5C42B00D862D6 /* basic.swift */,
+				486CE45323C5C42B00D862D6 /* Basic.swift */,
 				486CE45523C5C4CC00D862D6 /* ForumV2.swift */,
 			);
 			path = Models;
@@ -568,7 +568,7 @@
 				48685EBC23ACABE800DAC780 /* Colors.swift in Sources */,
 				48685ECF23B1C3BE00DAC780 /* CellContent.swift in Sources */,
 				48685EDD23B4734200DAC780 /* ProfileViewController.swift in Sources */,
-				486CE45423C5C42B00D862D6 /* basic.swift in Sources */,
+				486CE45423C5C42B00D862D6 /* Basic.swift in Sources */,
 				48685EF023B723E900DAC780 /* ScheduleCell.swift in Sources */,
 				48685EE823B5EB3900DAC780 /* PhotoCell.swift in Sources */,
 				48685EF223B7343400DAC780 /* Date.swift in Sources */,
@@ -772,7 +772,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.3;
+				MARKETING_VERSION = 0.7.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -792,7 +792,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.3;
+				MARKETING_VERSION = 0.7.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

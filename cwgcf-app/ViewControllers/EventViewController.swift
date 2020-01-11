@@ -53,7 +53,7 @@ class EventViewController : VCWithScroll {
         topBarSeperatorLeft.backgroundColor = color
         topBarSeperatorRight.backgroundColor = color
         
-        descriptionTextView.text = event.description
+        descriptionTextView.text = event.getDescription()
     }
     
     private func setupTopBar() {
@@ -62,6 +62,7 @@ class EventViewController : VCWithScroll {
         eventName.font = UIFont.boldSystemFont(ofSize: 24)
         eventName.textColor = .darkGray
         eventName.textAlignment = .center
+        eventName.numberOfLines = 0
         
         containerView.addSubview(topBarSeperator)
         setupTopbarSeperator()
@@ -72,12 +73,14 @@ class EventViewController : VCWithScroll {
         eventLocation.font = UIFont.systemFont(ofSize: 18)
         eventLocation.textColor = .lightGray
         eventLocation.textAlignment = .center
+        eventLocation.numberOfLines = 0
         
         containerView.addSubview(eventInterval)
         eventInterval.translatesAutoresizingMaskIntoConstraints = false
         eventInterval.font = UIFont.systemFont(ofSize: 18)
         eventInterval.textColor = .lightGray
         eventInterval.textAlignment = .center
+        eventInterval.numberOfLines = 0
         
         NSLayoutConstraint.activate([
             eventName.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 40),
