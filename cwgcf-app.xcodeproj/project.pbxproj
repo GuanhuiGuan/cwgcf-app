@@ -53,6 +53,7 @@
 		486CE45E23C98E4800D862D6 /* EventCellSimplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE45D23C98E4800D862D6 /* EventCellSimplify.swift */; };
 		486CE46023C9B74300D862D6 /* ColorsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE45F23C9B74300D862D6 /* ColorsExt.swift */; };
 		486CE46223CA26BF00D862D6 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE46123CA26BF00D862D6 /* EventViewController.swift */; };
+		486CE46523CA3AD100D862D6 /* StackEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE46423CA3AD100D862D6 /* StackEntryView.swift */; };
 		7081F82164EF74D9FBFB5AC4 /* Pods_cwgcf_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C26D2E0E9B18B09E45E887 /* Pods_cwgcf_appTests.framework */; };
 		8A203A0EF1A415639FBF18D8 /* Pods_cwgcf_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B236C22E988590F2444ED01 /* Pods_cwgcf_app.framework */; };
 /* End PBXBuildFile section */
@@ -130,6 +131,7 @@
 		486CE45D23C98E4800D862D6 /* EventCellSimplify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellSimplify.swift; sourceTree = "<group>"; };
 		486CE45F23C9B74300D862D6 /* ColorsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsExt.swift; sourceTree = "<group>"; };
 		486CE46123CA26BF00D862D6 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		486CE46423CA3AD100D862D6 /* StackEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackEntryView.swift; sourceTree = "<group>"; };
 		52BD2E7B2782C779FF992068 /* Pods-cwgcf-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app/Pods-cwgcf-app.debug.xcconfig"; sourceTree = "<group>"; };
 		5A95FEEE74B3748EEE150A58 /* Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app-cwgcf-appUITests/Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C28460D5A8CA27B8C772454A /* Pods-cwgcf-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-appTests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-appTests/Pods-cwgcf-appTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		48685E8723ACA3C400DAC780 /* cwgcf-app */ = {
 			isa = PBXGroup;
 			children = (
+				486CE46323CA3A9D00D862D6 /* Components */,
 				48685EDE23B49E3C00DAC780 /* Clients */,
 				48685ED923B46BFC00DAC780 /* Models */,
 				48685ECB23B1C11600DAC780 /* Cells */,
@@ -325,6 +328,14 @@
 				48685EFF23BF170700DAC780 /* ForumAPIClient.swift */,
 			);
 			path = Clients;
+			sourceTree = "<group>";
+		};
+		486CE46323CA3A9D00D862D6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				486CE46423CA3AD100D862D6 /* StackEntryView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		65579C7C5F46C83649BD5564 /* Frameworks */ = {
@@ -567,6 +578,7 @@
 				48685EE623B5EACD00DAC780 /* PhotosViewController.swift in Sources */,
 				48685EC823ACBECA00DAC780 /* ForumViewController.swift in Sources */,
 				48685ECA23ACBF2000DAC780 /* ContactViewController.swift in Sources */,
+				486CE46523CA3AD100D862D6 /* StackEntryView.swift in Sources */,
 				48685EC623ACB45800DAC780 /* VCWithScroll.swift in Sources */,
 				48685EBE23ACAEF900DAC780 /* TabBarViewController.swift in Sources */,
 				48685EEC23B5F36300DAC780 /* Photo.swift in Sources */,
@@ -760,7 +772,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.7.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -780,7 +792,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.7.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

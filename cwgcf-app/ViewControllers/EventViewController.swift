@@ -20,16 +20,22 @@ class EventViewController : VCWithScroll {
     var eventLocation : UILabel = UILabel()
     var eventInterval : UILabel = UILabel()
     
-    var topBarSeperator : UIView = UIView()
+    var topBarSeperator = UIView()
     let topBarIcon = UIImageView()
     let topBarSeperatorLeft = UIView()
     let topBarSeperatorRight = UIView()
     
-    var eventDescriptionView : UIView!
-    var eventHostView: UIView!
+    let keyWidth : CGFloat = 100, seperatorWidth : CGFloat = 10
+    lazy var eventHostView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth)
+    var eventAttendeesView = UIView()
+    
+    lazy var eventDescriptionView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth)
+    var descriptionTextView = UILabel()
     
     override func viewDidLoad() {
         setupTopBar()
+        
+        setupDescriptionView()
         
         setupBGAndScroll(enMap["event_view"] ?? "Event", bgColor: ghostWhite)
     }
@@ -39,10 +45,15 @@ class EventViewController : VCWithScroll {
         eventLocation.text = event.location
         eventInterval.text = event.getIntervalStr()
         
-        let color = UIColor(hexString: event.colorHex)
+        var color = UIColor(hexString: event.colorHex)
+        if color == .black {
+            color = .darkGray
+        }
         topBarIcon.setImageColor(color: color)
         topBarSeperatorLeft.backgroundColor = color
         topBarSeperatorRight.backgroundColor = color
+        
+        descriptionTextView.text = event.description
     }
     
     private func setupTopBar() {
@@ -119,5 +130,33 @@ class EventViewController : VCWithScroll {
             topBarSeperatorRight.leadingAnchor.constraint(equalTo: topBarIcon.trailingAnchor, constant: 15),
             topBarSeperatorRight.heightAnchor.constraint(equalToConstant: 3),
         ])
+    }
+    
+    private func setupDescriptionView() {
+        eventDescriptionView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(eventDescriptionView)
+        
+        eventDescriptionView.keyView.text = "Description:"
+        eventDescriptionView.keyView.textColor = .darkGray
+        eventDescriptionView.keyView.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        eventDescriptionView.valueView.addSubview(descriptionTextView)
+        descriptionTextView.numberOfLines = 0
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        descriptionTextView.textColor = .systemGray
+        descriptionTextView.font = UIFont.systemFont(ofSize: 16)
+        
+        NSLayoutConstraint.activate([
+            eventDescriptionView.topAnchor.constraint(equalTo: eventInterval.bottomAnchor, constant: 40),
+            eventDescriptionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 40),
+            eventDescriptionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -40),
+            
+            descriptionTextView.topAnchor.constraint(equalTo: eventDescriptionView.valueView.topAnchor, constant: 0),
+            descriptionTextView.leadingAnchor.constraint(equalTo: eventDescriptionView.valueView.leadingAnchor, constant: 0),
+            descriptionTextView.bottomAnchor.constraint(equalTo: eventDescriptionView.valueView.bottomAnchor, constant: 0),
+            descriptionTextView.trailingAnchor.constraint(equalTo: eventDescriptionView.valueView.trailingAnchor, constant: 0),
+        ])
+        
+        updateContentSize(eventDescriptionView, constant: 40)
     }
 }
