@@ -43,4 +43,15 @@ class StackEntryView : UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func addValueSubview(_ view: UIView) {
+        valueView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: valueView.topAnchor, constant: 0),
+            view.leadingAnchor.constraint(equalTo: valueView.leadingAnchor, constant: 0),
+            view.bottomAnchor.constraint(equalTo: valueView.bottomAnchor, constant: 0),
+            view.trailingAnchor.constraint(equalTo: valueView.trailingAnchor, constant: 0),
+        ])
+    }
 }

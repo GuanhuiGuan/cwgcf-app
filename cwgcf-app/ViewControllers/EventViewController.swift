@@ -140,9 +140,8 @@ class EventViewController : VCWithScroll {
         eventDescriptionView.keyView.textColor = .darkGray
         eventDescriptionView.keyView.font = UIFont.boldSystemFont(ofSize: 16)
         
-        eventDescriptionView.valueView.addSubview(descriptionTextView)
+        eventDescriptionView.addValueSubview(descriptionTextView)
         descriptionTextView.numberOfLines = 0
-        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         descriptionTextView.textColor = .systemGray
         descriptionTextView.font = UIFont.systemFont(ofSize: 16)
         
@@ -150,11 +149,6 @@ class EventViewController : VCWithScroll {
             eventDescriptionView.topAnchor.constraint(equalTo: eventInterval.bottomAnchor, constant: 40),
             eventDescriptionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 40),
             eventDescriptionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -40),
-            
-            descriptionTextView.topAnchor.constraint(equalTo: eventDescriptionView.valueView.topAnchor, constant: 0),
-            descriptionTextView.leadingAnchor.constraint(equalTo: eventDescriptionView.valueView.leadingAnchor, constant: 0),
-            descriptionTextView.bottomAnchor.constraint(equalTo: eventDescriptionView.valueView.bottomAnchor, constant: 0),
-            descriptionTextView.trailingAnchor.constraint(equalTo: eventDescriptionView.valueView.trailingAnchor, constant: 0),
         ])
         
         updateContentSize(eventDescriptionView, constant: 40)
