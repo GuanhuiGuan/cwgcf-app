@@ -94,6 +94,7 @@ extension ScheduleViewController : UICollectionViewDataSource {
         if collectionView == mainView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCellSimplify.ID, for: indexPath) as! ScheduleCellSimplify
             cell.events = allEvents[indexPath.row]
+            cell.navigationController = self.navigationController!
             return cell
         }
         return UICollectionViewCell()

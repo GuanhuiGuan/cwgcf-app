@@ -12,6 +12,7 @@ import UIKit
 class ScheduleCellSimplify : UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
     
     static var ID : String = "ScheduleCellSimplify"
+    var navigationController = UINavigationController()
     
     var events : [ScheduleEvent]? {
         didSet {
@@ -69,11 +70,9 @@ class ScheduleCellSimplify : UICollectionViewCell, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        let vc = ProfileViewController()
-//        vc.profile = cacheProfiles[indexPath.row]
-//        vc.modalPresentationStyle = .fullScreen
-// vc.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = EventViewController()
+        vc.event = events?[indexPath.row]
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

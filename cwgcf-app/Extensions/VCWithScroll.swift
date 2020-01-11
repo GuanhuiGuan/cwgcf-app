@@ -31,6 +31,14 @@ class VCWithScroll : UIViewController {
         scrollView.addSubview(containerView)
     }
     
+    func setupBGAndScroll(_ title:String, bgColor: UIColor) {
+        view.backgroundColor = bgColor
+        self.navigationItem.title = title
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
+    }
+    
     func updateContentSize(_ addedView:UIView) {
         containerView.setNeedsLayout()
         containerView.layoutIfNeeded()
@@ -41,5 +49,11 @@ class VCWithScroll : UIViewController {
         contentSize.height += addedHeight
         scrollView.contentSize = contentSize
         containerView.frame.size = contentSize
+    }
+    
+    func updateContentSize(_ addedView:UIView, constant: CGFloat) {
+        containerView.setNeedsLayout()
+        containerView.layoutIfNeeded()
+        updateContentSize(addedView.frame.height + constant)
     }
 }
