@@ -46,6 +46,27 @@ var tempSchedules : [[ScheduleEvent]] = [
     ],
 ]
 
+var tempSchedulesV2 : [[ScheduleEvent]] = [
+    [
+        ScheduleEvent(name: "Registration", startTime: "09:00", endTime: "10:00", location: "Main Hall", description: "Exhibition registration", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
+        ScheduleEvent(name: "Exhibition Opening", startTime: "10:00", endTime: "11:00", location: "Main Hall", description: "Opening ceremony of the exhibition", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: false),
+        ScheduleEvent(name: "Welcoming Banquet", startTime: "15:00", endTime: "18:00", location: "Dining Hall", description: "Banquet for registered guests", colorHex: "#1665B9", hostId: "", attendeeIds: [], registered: true),
+    ],
+    [
+        ScheduleEvent(name: "Registration", startTime: "08:00", endTime: "09:00", location: "Main Hall", description: "CWGCF registration", colorHex: "#jf43ikl", hostId: "", attendeeIds: [], registered: true),
+        ScheduleEvent(name: "CWGCF Opening Ceremony", startTime: "09:00", endTime: "12:00", location: "Main Hall", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
+        ScheduleEvent(name: "Lunch", startTime: "12:30", endTime: "14:30", location: "Dining Hall", description: "Lunch for registered guests", colorHex: "#1665B9", hostId: "", attendeeIds: [], registered: true),
+        ScheduleEvent(name: "WCGOCY Opening Ceremony", startTime: "14:30", endTime: "15:30", location: "Main Hall", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: false),
+        ScheduleEvent(name: "Forums", startTime: "15:30", endTime: "17:00", location: "Forum room", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
+        ScheduleEvent(name: "Gala Dinner", startTime: "18:30", endTime: "22:00", location: "Forum room", description: "", colorHex: "#1665B9", hostId: "", attendeeIds: [], registered: false),
+    ],
+    [
+        ScheduleEvent(name: "Closing Ceremony", startTime: "09:30", endTime: "11:00", location: "Main Hall", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
+        ScheduleEvent(name: "Flag Exchange", startTime: "11:00", endTime: "12:00", location: "Outdoors", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
+        ScheduleEvent(name: "End", startTime: "12:00", endTime: "12:30", location: "", description: "", colorHex: "#1665B9", hostId: "", attendeeIds: [], registered: false),
+    ],
+]
+
 let enUserDB : [String:Profile] = [
     "000": Profile("000", name: "Steve Jobs", title: "Founder of Apple Inc", avatarUrl: "steve_jobs", description: "Steven Paul Jobs (/dʒɒbz/; February 24, 1955 – October 5, 2011) was an American business magnate, industrial designer, investor, and media proprietor. He was the chairman, chief executive officer (CEO), and co-founder of Apple Inc., the chairman and majority shareholder of Pixar, a member of The Walt Disney Company's board of directors following its acquisition of Pixar, and the founder, chairman, and CEO of NeXT. Jobs is widely recognized as a pioneer of the personal computer revolution of the 1970s and 1980s, along with Apple co-founder Steve Wozniak. Jobs's design aesthetic was influenced by philosophies of Zen and Buddhism. In India, he experienced Buddhism while on his seven-month spiritual journey,[235] and his sense of intuition was influenced by the spiritual people with whom he studied.[235] He also learned from many references and sources, such as modernist architectural style of Joseph Eichler,[citation needed] and the industrial designs of Richard Sapper[236] and Dieter Rams. According to Apple co-founder Steve Wozniak, \"Steve didn't ever code. He wasn't an engineer and he didn't do any original design...\"[237][238] Daniel Kottke, one of Apple's earliest employees and a college friend of Jobs's, stated: \"Between Woz and Jobs, Woz was the innovator, the inventor. Steve Jobs was the marketing person."),
     "001": Profile("001", name: "John Doe", title: "", avatarUrl: "", description: ""),

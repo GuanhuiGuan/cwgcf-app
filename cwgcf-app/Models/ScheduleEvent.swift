@@ -43,7 +43,6 @@ class ScheduleEvent {
     var startTime : HourMin?
     var endTime : HourMin?
     var title : String = ""
-    var description : String = ""
 
     init(st : String, et : String, t : String, desc : String) {
         startTime = HourMin.fromString(st)
@@ -65,5 +64,51 @@ class ScheduleEvent {
         let eh = CGFloat(endTime?.hour ?? 0)
         let em = CGFloat(endTime?.min ?? 0)
         return ((eh-sh) + (em-sm) / 60.0) * timeTableCellHeight
+    }
+    
+    // V2
+    var name : String = ""
+    var interval : Interval = Interval() // Not using
+    var startTimeStr : String = ""
+    var endTimeStr : String = ""
+    var location : String = ""
+    var description : String = ""
+    var colorHex : String = ""
+    var hostId : String = ""
+    var attendeeIds : [String] = []
+    var registered : Bool = false
+    
+    init(name: String, interval: Interval, location: String, description: String, colorHex: String, hostId: String, attendeeIds: [String], registered: Bool) {
+        self.name = name
+        self.interval = interval
+        self.location = location
+        self.description = description
+        self.colorHex = colorHex
+        self.hostId = hostId
+        self.attendeeIds = attendeeIds
+        self.registered = registered
+    }
+    
+    init(name: String, startTime: String, endTime: String, location: String, description: String, colorHex: String, hostId: String, attendeeIds: [String], registered: Bool) {
+        self.name = name
+        self.startTimeStr = startTime
+        self.endTimeStr = endTime
+        self.location = location
+        self.description = description
+        self.colorHex = colorHex
+        self.hostId = hostId
+        self.attendeeIds = attendeeIds
+        self.registered = registered
+    }
+    
+    func getColor() -> UIColor {
+        return UIColor(hexString: colorHex)
+    }
+    
+    func getIntervalStr() -> String {
+        if startTimeStr.isEmpty || endTimeStr.isEmpty {
+            return ""
+        }
+        return "\(startTimeStr) - \(endTimeStr)"
     }
 }

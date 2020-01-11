@@ -20,17 +20,20 @@ class ScheduleViewController : UIViewController {
         v.translatesAutoresizingMaskIntoConstraints = false
         v.isPagingEnabled = true
         v.backgroundColor = .clear
-        v.register(ScheduleCell.self, forCellWithReuseIdentifier: ScheduleCell.ID)
+        v.register(ScheduleCellSimplify.self, forCellWithReuseIdentifier: ScheduleCellSimplify.ID)
         v.showsHorizontalScrollIndicator = false
         v.dataSource = self
         v.delegate = self
         return v
     }()
     
+    var bgLogo : UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = ghostWhite
+        setBgLogo()
         navigationItem.title = dates[0].formatToDMY()
         
         view.addSubview(mainView)
@@ -53,7 +56,22 @@ extension ScheduleViewController {
     }
     
     func loadEvents() {
-        allEvents = tempSchedules
+        allEvents = tempSchedulesV2
+    }
+    
+    func setBgLogo() {
+        bgLogo = UIImageView()
+        view.addSubview(bgLogo)
+        bgLogo.translatesAutoresizingMaskIntoConstraints = false
+        bgLogo.image = UIImage(named: "cwgcf_logo")
+        bgLogo.setImageColor(color: .lightGray)
+        bgLogo.alpha = 0.4
+        NSLayoutConstraint.activate([
+            bgLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            bgLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0),
+            bgLogo.heightAnchor.constraint(equalToConstant: 200),
+            bgLogo.widthAnchor.constraint(equalToConstant: 200),
+        ])
     }
 }
 
@@ -74,7 +92,7 @@ extension ScheduleViewController : UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == mainView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCell.ID, for: indexPath) as! ScheduleCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCellSimplify.ID, for: indexPath) as! ScheduleCellSimplify
             cell.events = allEvents[indexPath.row]
             return cell
         }

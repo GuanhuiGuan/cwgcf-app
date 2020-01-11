@@ -14,3 +14,8 @@ class Metadata : Codable {
     var updatedAt : Int64 = 0
     var updatedBy : String = ""
 }
+
+class Interval : Codable {
+    var startTime : Int64 = 0
+    var endTime : Int64 = 0
+}

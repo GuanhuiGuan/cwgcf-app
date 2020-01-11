@@ -16,12 +16,15 @@ class TabBarViewController: UITabBarController {
         let client = ProfileAPIClient()
         client.GetAllProfiles()
         
-        let forumViewController = ForumViewController()
-        forumViewController.loadData()
+        // let forumViewController = ForumViewController()
+        // forumViewController.loadData()
+        
+        let scheduleVC = ScheduleViewController()
+        scheduleVC.loadEvents()
         
         self.viewControllers = [
             setupChildVC(HomeViewController(), title: "Home", tag: 0, iconName: "house"),
-            setupChildVC(forumViewController, title: "Forum", tag: 1, iconName: "person.3"),
+            setupChildVC(scheduleVC, title: "Schedule", tag: 1, iconName: "calendar"),
             setupChildVC(ContactViewController(), title: "Contact", tag: 2, iconName: "person"),
         ]
         selectedIndex = 0
