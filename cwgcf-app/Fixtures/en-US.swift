@@ -50,20 +50,20 @@ var tempSchedulesV2 : [[ScheduleEvent]] = [
     [
         ScheduleEvent(name: "Registration", startTime: "09:00", endTime: "10:00", location: "Main Hall", description: "Exhibition registration", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
         ScheduleEvent(name: "Exhibition Opening", startTime: "10:00", endTime: "11:00", location: "Main Hall", description: "Opening ceremony of the exhibition", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: false),
-        ScheduleEvent(name: "Welcoming Banquet", startTime: "15:00", endTime: "18:00", location: "Dining Hall", description: "Banquet for registered guests", colorHex: "#1665B9", hostId: "", attendeeIds: [], registered: true),
+        ScheduleEvent(name: "Welcoming Banquet", startTime: "15:00", endTime: "18:00", location: "Dining Hall", description: "Banquet for registered guests", colorHex: "#3D69DE", hostId: "", attendeeIds: [], registered: true),
     ],
     [
         ScheduleEvent(name: "Registration", startTime: "08:00", endTime: "09:00", location: "Main Hall", description: "CWGCF registration", colorHex: "#jf43ikl", hostId: "", attendeeIds: [], registered: true),
         ScheduleEvent(name: "CWGCF Opening Ceremony", startTime: "09:00", endTime: "12:00", location: "Main Hall", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
-        ScheduleEvent(name: "Lunch", startTime: "12:30", endTime: "14:30", location: "Dining Hall", description: "Lunch for registered guests", colorHex: "#1665B9", hostId: "", attendeeIds: [], registered: true),
+        ScheduleEvent(name: "Lunch", startTime: "12:30", endTime: "14:30", location: "Dining Hall", description: "Lunch for registered guests", colorHex: "#3D69DE", hostId: "", attendeeIds: [], registered: true),
         ScheduleEvent(name: "WCGOCY Opening Ceremony", startTime: "14:30", endTime: "15:30", location: "Main Hall", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: false),
         ScheduleEvent(name: "Forums", startTime: "15:30", endTime: "17:00", location: "Forum room", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
-        ScheduleEvent(name: "Gala Dinner", startTime: "18:30", endTime: "22:00", location: "Forum room", description: "", colorHex: "#1665B9", hostId: "", attendeeIds: [], registered: false),
+        ScheduleEvent(name: "Gala Dinner", startTime: "18:30", endTime: "22:00", location: "Forum room", description: "", colorHex: "#3D69DE", hostId: "", attendeeIds: [], registered: false),
     ],
     [
         ScheduleEvent(name: "Closing Ceremony", startTime: "09:30", endTime: "11:00", location: "Main Hall", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
         ScheduleEvent(name: "Flag Exchange", startTime: "11:00", endTime: "12:00", location: "Outdoors", description: "", colorHex: "#B93316", hostId: "", attendeeIds: [], registered: true),
-        ScheduleEvent(name: "End", startTime: "12:00", endTime: "12:30", location: "", description: "", colorHex: "#1665B9", hostId: "", attendeeIds: [], registered: false),
+        ScheduleEvent(name: "End", startTime: "12:00", endTime: "12:30", location: "", description: "", colorHex: "#3D69DE", hostId: "", attendeeIds: [], registered: false),
     ],
 ]
 

@@ -14,3 +14,5 @@ let ghostWhite = UIColor(red: 0.97, green: 0.97, blue: 1, alpha: 1)
 let darkRed = UIColor(red: 0.545, green: 0, blue: 0, alpha: 1)
 
 let backgroundColor : UIColor = .systemGray5
+
+let indigo : UIColor = UIColor(hexString: "5062F5")

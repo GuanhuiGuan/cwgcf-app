@@ -98,21 +98,21 @@ class HomeViewController: VCWithScroll {
         let imgLeft = UIImageView()
         v.addSubview(imgLeft)
         imgLeft.translatesAutoresizingMaskIntoConstraints = false
-        imgLeft.image = UIImage(named: "bill_gates")
+        imgLeft.image = UIImage(named: "amy_zeng")
         imgLeft.contentMode = .scaleAspectFill
         imgLeft.layer.masksToBounds = true
         
         let imgTopRight = UIImageView()
         v.addSubview(imgTopRight)
         imgTopRight.translatesAutoresizingMaskIntoConstraints = false
-        imgTopRight.image = UIImage(named: "dara_k")
+        imgTopRight.image = UIImage(named: "zhanyu_lu")
         imgTopRight.contentMode = .scaleAspectFill
         imgTopRight.layer.masksToBounds = true
         
         let imgBotRight = UIImageView()
         v.addSubview(imgBotRight)
         imgBotRight.translatesAutoresizingMaskIntoConstraints = false
-        imgBotRight.image = UIImage(named: "zhang_yiming")
+        imgBotRight.image = UIImage(named: "tracy_guan")
         imgBotRight.contentMode = .scaleAspectFill
         imgBotRight.layer.masksToBounds = true
         
@@ -125,7 +125,7 @@ class HomeViewController: VCWithScroll {
         let imgCenter = UIImageView()
         imgCenterBg.addSubview(imgCenter)
         imgCenter.translatesAutoresizingMaskIntoConstraints = false
-        imgCenter.image = UIImage(named: "steve_jobs")
+        imgCenter.image = UIImage(named: "queen")
         imgCenter.contentMode = .scaleAspectFill
         imgCenter.layer.cornerRadius = 50
         imgCenter.layer.masksToBounds = true

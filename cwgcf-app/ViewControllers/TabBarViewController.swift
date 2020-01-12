@@ -28,6 +28,7 @@ class TabBarViewController: UITabBarController {
             setupChildVC(ContactViewController(), title: "Contact", tag: 2, iconName: "person"),
         ]
         selectedIndex = 0
+        tabBar.tintColor = darkRed
     }
     
     private func setupChildVC(_ vc:UIViewController, title:String, tag:Int, iconName:String) -> UIViewController {

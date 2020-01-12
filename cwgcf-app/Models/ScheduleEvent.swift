@@ -104,6 +104,13 @@ class ScheduleEvent {
         self.registered = registered
     }
     
+    func getLocation() -> String {
+        if location.isEmpty {
+            return "No location specified"
+        }
+        return location
+    }
+    
     func getDescription() -> String {
         if description.isEmpty {
             return "No description"

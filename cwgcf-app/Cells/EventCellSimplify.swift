@@ -56,7 +56,7 @@ class EventCellSimplify : UITableViewCell {
         }
         bgView.backgroundColor = hightlightColor
         eventName.text = event.name
-        eventLocation.text = event.location
+        eventLocation.text = event.getLocation()
         eventInterval.text = event.getIntervalStr()
     }
     
