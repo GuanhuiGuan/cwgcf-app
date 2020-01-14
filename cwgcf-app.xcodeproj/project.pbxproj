@@ -54,6 +54,8 @@
 		486CE46023C9B74300D862D6 /* ColorsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE45F23C9B74300D862D6 /* ColorsExt.swift */; };
 		486CE46223CA26BF00D862D6 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE46123CA26BF00D862D6 /* EventViewController.swift */; };
 		486CE46523CA3AD100D862D6 /* StackEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE46423CA3AD100D862D6 /* StackEntryView.swift */; };
+		486CE46723CC432000D862D6 /* ProfileArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE46623CC432000D862D6 /* ProfileArray.swift */; };
+		486CE46923CC45EB00D862D6 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486CE46823CC45EB00D862D6 /* AvatarView.swift */; };
 		7081F82164EF74D9FBFB5AC4 /* Pods_cwgcf_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C26D2E0E9B18B09E45E887 /* Pods_cwgcf_appTests.framework */; };
 		8A203A0EF1A415639FBF18D8 /* Pods_cwgcf_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B236C22E988590F2444ED01 /* Pods_cwgcf_app.framework */; };
 /* End PBXBuildFile section */
@@ -132,6 +134,8 @@
 		486CE45F23C9B74300D862D6 /* ColorsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsExt.swift; sourceTree = "<group>"; };
 		486CE46123CA26BF00D862D6 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		486CE46423CA3AD100D862D6 /* StackEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackEntryView.swift; sourceTree = "<group>"; };
+		486CE46623CC432000D862D6 /* ProfileArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileArray.swift; sourceTree = "<group>"; };
+		486CE46823CC45EB00D862D6 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		52BD2E7B2782C779FF992068 /* Pods-cwgcf-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app/Pods-cwgcf-app.debug.xcconfig"; sourceTree = "<group>"; };
 		5A95FEEE74B3748EEE150A58 /* Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-app-cwgcf-appUITests/Pods-cwgcf-app-cwgcf-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C28460D5A8CA27B8C772454A /* Pods-cwgcf-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cwgcf-appTests.debug.xcconfig"; path = "Target Support Files/Pods-cwgcf-appTests/Pods-cwgcf-appTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -334,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				486CE46423CA3AD100D862D6 /* StackEntryView.swift */,
+				486CE46623CC432000D862D6 /* ProfileArray.swift */,
+				486CE46823CC45EB00D862D6 /* AvatarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -562,6 +568,7 @@
 				48685EEE23B6FBCD00DAC780 /* ScheduleViewController.swift in Sources */,
 				486CE45E23C98E4800D862D6 /* EventCellSimplify.swift in Sources */,
 				48685EFA23BDECEA00DAC780 /* ForumCell.swift in Sources */,
+				486CE46723CC432000D862D6 /* ProfileArray.swift in Sources */,
 				48685EF623B805BB00DAC780 /* ScheduleEvent.swift in Sources */,
 				48685E8D23ACA3C400DAC780 /* HomeViewController.swift in Sources */,
 				48685ECD23B1C13900DAC780 /* TopBannerCell.swift in Sources */,
@@ -588,6 +595,7 @@
 				486CE46023C9B74300D862D6 /* ColorsExt.swift in Sources */,
 				48685E8B23ACA3C400DAC780 /* SceneDelegate.swift in Sources */,
 				48685EFC23BDF00100DAC780 /* Forum.swift in Sources */,
+				486CE46923CC45EB00D862D6 /* AvatarView.swift in Sources */,
 				48685ED623B43DD000DAC780 /* AttendeesViewController.swift in Sources */,
 				48685ED823B43FC600DAC780 /* ProfileCell.swift in Sources */,
 				48685EE423B4CFD200DAC780 /* UIImageExt.swift in Sources */,
@@ -772,7 +780,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.5;
+				MARKETING_VERSION = 0.7.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -792,7 +800,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.5;
+				MARKETING_VERSION = 0.7.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "frosty.cwgcf-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

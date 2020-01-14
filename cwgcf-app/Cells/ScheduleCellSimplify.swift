@@ -72,6 +72,7 @@ class ScheduleCellSimplify : UICollectionViewCell, UITableViewDataSource, UITabl
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = EventViewController()
         vc.event = events?[indexPath.row]
+        vc.loadData()
         self.navigationController.pushViewController(vc, animated: true)
     }
     

@@ -74,32 +74,32 @@ class ScheduleEvent {
     var location : String = ""
     var description : String = ""
     var colorHex : String = ""
-    var hostId : String = ""
+    var hostIds : [String] = []
     var attendeeIds : [String] = []
     var registered : Bool = false
     // Profiles will be populated when the detailed event page is loaded
-    var host : Profile = Profile()
+    var hosts : [Profile] = []
     var attendees : [Profile] = []
     
-    init(name: String, interval: Interval, location: String, description: String, colorHex: String, hostId: String, attendeeIds: [String], registered: Bool) {
+    init(name: String, interval: Interval, location: String, description: String, colorHex: String, hostIds: [String], attendeeIds: [String], registered: Bool) {
         self.name = name
         self.interval = interval
         self.location = location
         self.description = description
         self.colorHex = colorHex
-        self.hostId = hostId
+        self.hostIds = hostIds
         self.attendeeIds = attendeeIds
         self.registered = registered
     }
     
-    init(name: String, startTime: String, endTime: String, location: String, description: String, colorHex: String, hostId: String, attendeeIds: [String], registered: Bool) {
+    init(name: String, startTime: String, endTime: String, location: String, description: String, colorHex: String, hostIds: [String], attendeeIds: [String], registered: Bool) {
         self.name = name
         self.startTimeStr = startTime
         self.endTimeStr = endTime
         self.location = location
         self.description = description
         self.colorHex = colorHex
-        self.hostId = hostId
+        self.hostIds = hostIds
         self.attendeeIds = attendeeIds
         self.registered = registered
     }

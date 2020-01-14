@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 var contactEmails : [String] = [
-    "info@ukshundebusiness.co.uk",
-    "ukgdbc@gmail.com",
+    "cwgcf@ukgdbc.co.uk",
 ]
 
 class ContactViewController : VCWithScroll {

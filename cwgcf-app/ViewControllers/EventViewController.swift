@@ -10,11 +10,7 @@ import Foundation
 import UIKit
 
 class EventViewController : VCWithScroll {
-    var event : ScheduleEvent! {
-        didSet{
-            setupData()
-        }
-    }
+    var event : ScheduleEvent!
     
     var eventName : UILabel = UILabel()
     var eventLocation : UILabel = UILabel()
@@ -27,7 +23,7 @@ class EventViewController : VCWithScroll {
     
     let keyWidth : CGFloat = 100, seperatorWidth : CGFloat = 10
     lazy var eventHostView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth)
-    var hostAvatar = UIImageView()
+    lazy var hostProfileArray = ProfileArray(avatarRadius: eventProfileAvatarRadius, numToShow: 3)
     
     lazy var eventAttendeesView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth)
     
@@ -59,6 +55,9 @@ class EventViewController : VCWithScroll {
         topBarIcon.setImageColor(color: color)
         topBarSeperatorLeft.backgroundColor = color
         topBarSeperatorRight.backgroundColor = color
+        
+        hostProfileArray.profiles = event.hosts
+        hostProfileArray.loadArrayData()
         
         descriptionTextView.text = event.getDescription()
         
@@ -147,31 +146,16 @@ class EventViewController : VCWithScroll {
     private func setupHostView() {
         eventHostView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(eventHostView)
-        
         eventHostView.keyView.text = "Host:"
         eventHostView.keyView.textColor = .darkGray
         eventHostView.keyView.font = UIFont.boldSystemFont(ofSize: 16)
         
-        let profilesView = UIView()
-        profilesView.translatesAutoresizingMaskIntoConstraints = false
-        eventHostView.addValueSubview(profilesView)
-        
-        hostAvatar.translatesAutoresizingMaskIntoConstraints = false
-        profilesView.addSubview(hostAvatar)
-        hostAvatar.image = UIImage(named: "queen")
-        hostAvatar.contentMode = .scaleAspectFill
-        hostAvatar.layer.cornerRadius = 15
-        hostAvatar.layer.masksToBounds = true
+        eventHostView.addValueSubview(hostProfileArray)
         
         NSLayoutConstraint.activate([
             eventHostView.topAnchor.constraint(equalTo: eventInterval.bottomAnchor, constant: 40),
             eventHostView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 40),
             eventHostView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -40),
-            
-            hostAvatar.leadingAnchor.constraint(equalTo: profilesView.leadingAnchor, constant: 0),
-            hostAvatar.centerYAnchor.constraint(equalTo: profilesView.centerYAnchor, constant: 0),
-            hostAvatar.heightAnchor.constraint(equalToConstant: 30),
-            hostAvatar.widthAnchor.constraint(equalToConstant: 30),
         ])
         
         updateContentSize(eventHostView, constant: 40)
@@ -191,7 +175,7 @@ class EventViewController : VCWithScroll {
         descriptionTextView.font = UIFont.systemFont(ofSize: 16)
         
         NSLayoutConstraint.activate([
-            eventDescriptionView.topAnchor.constraint(equalTo: eventHostView.bottomAnchor, constant: 20),
+            eventDescriptionView.topAnchor.constraint(equalTo: eventHostView.bottomAnchor, constant: 30),
             eventDescriptionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 40),
             eventDescriptionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -40),
         ])
@@ -240,5 +224,21 @@ class EventViewController : VCWithScroll {
             registerButton.setTitle("Attend event", for: .normal)
             registerButton.backgroundColor = indigo
         }
+    }
+    
+    func loadData() {
+        event.hosts = [
+            Profile("", name: "", title: "", avatarUrl: "queen", description: ""),
+            Profile("", name: "", title: "", avatarUrl: "charles", description: ""),
+            Profile("", name: "", title: "", avatarUrl: "amy_zeng", description: ""),
+            Profile("", name: "", title: "", avatarUrl: "tracy_guan", description: ""),
+        ]
+        event.attendees = [
+            Profile("", name: "", title: "", avatarUrl: "queen", description: ""),
+            Profile("", name: "", title: "", avatarUrl: "charles", description: ""),
+            Profile("", name: "", title: "", avatarUrl: "amy_zeng", description: ""),
+            Profile("", name: "", title: "", avatarUrl: "tracy_guan", description: ""),
+        ]
+        setupData()
     }
 }
