@@ -22,12 +22,13 @@ class EventViewController : VCWithScroll {
     let topBarSeperatorRight = UIView()
     
     let keyWidth : CGFloat = 100, seperatorWidth : CGFloat = 10
-    lazy var eventHostView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth)
+    lazy var eventHostView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth, keyAlignCenter: true)
     lazy var hostProfileArray = ProfileArray(avatarRadius: eventProfileAvatarRadius, numToShow: 3)
     
-    lazy var eventAttendeesView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth)
+    lazy var eventAttendeesView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth, keyAlignCenter: true)
+    lazy var attendeesProfileArray = ProfileArray(avatarRadius: eventProfileAvatarRadius, numToShow: 3)
     
-    lazy var eventDescriptionView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth)
+    lazy var eventDescriptionView = StackEntryView(keyWidth: keyWidth, seperatorWidth: seperatorWidth, keyAlignCenter: false)
     var descriptionTextView = UILabel()
     
     var registerButton = UIButton()
@@ -37,6 +38,7 @@ class EventViewController : VCWithScroll {
         setupTopBar()
         
         setupHostView()
+        setupAttendeesView()
         setupDescriptionView()
         setupRegisterButton()
         
@@ -58,6 +60,9 @@ class EventViewController : VCWithScroll {
         
         hostProfileArray.profiles = event.hosts
         hostProfileArray.loadArrayData()
+        
+        attendeesProfileArray.profiles = event.attendees
+        attendeesProfileArray.loadArrayData()
         
         descriptionTextView.text = event.getDescription()
         
@@ -161,6 +166,24 @@ class EventViewController : VCWithScroll {
         updateContentSize(eventHostView, constant: 40)
     }
     
+    private func setupAttendeesView() {
+        eventAttendeesView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(eventAttendeesView)
+        eventAttendeesView.keyView.text = "Attendees:"
+        eventAttendeesView.keyView.textColor = .darkGray
+        eventAttendeesView.keyView.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        eventAttendeesView.addValueSubview(attendeesProfileArray)
+        
+        NSLayoutConstraint.activate([
+            eventAttendeesView.topAnchor.constraint(equalTo: eventHostView.bottomAnchor, constant: 20),
+            eventAttendeesView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 40),
+            eventAttendeesView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -40),
+        ])
+        
+        updateContentSize(eventAttendeesView, constant: 20)
+    }
+    
     private func setupDescriptionView() {
         eventDescriptionView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(eventDescriptionView)
@@ -175,12 +198,12 @@ class EventViewController : VCWithScroll {
         descriptionTextView.font = UIFont.systemFont(ofSize: 16)
         
         NSLayoutConstraint.activate([
-            eventDescriptionView.topAnchor.constraint(equalTo: eventHostView.bottomAnchor, constant: 30),
+            eventDescriptionView.topAnchor.constraint(equalTo: eventAttendeesView.bottomAnchor, constant: 20),
             eventDescriptionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 40),
             eventDescriptionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -40),
         ])
         
-        updateContentSize(eventDescriptionView, constant: 10)
+        updateContentSize(eventDescriptionView, constant: 20)
     }
     
     private func setupRegisterButton() {

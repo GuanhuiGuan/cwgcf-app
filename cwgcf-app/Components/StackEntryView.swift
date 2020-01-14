@@ -13,7 +13,10 @@ class StackEntryView : UIView {
     var keyView : UILabel!
     var valueView : UIView!
     
-    convenience init(keyWidth: CGFloat, seperatorWidth: CGFloat) {
+    var keyToTop : NSLayoutConstraint!
+    var keyAtCenter : NSLayoutConstraint!
+    
+    convenience init(keyWidth: CGFloat, seperatorWidth: CGFloat, keyAlignCenter: Bool) {
         self.init(frame: .zero)
         keyView = UILabel()
         addSubview(keyView)
@@ -24,8 +27,12 @@ class StackEntryView : UIView {
         addSubview(valueView)
         valueView.translatesAutoresizingMaskIntoConstraints = false
         
+        keyToTop = keyView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+        keyAtCenter = keyView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0)
+        // default
+        keyVerticalCenter(keyAlignCenter)
+        
         NSLayoutConstraint.activate([
-            keyView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             keyView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             keyView.widthAnchor.constraint(equalToConstant: keyWidth),
             
@@ -53,5 +60,15 @@ class StackEntryView : UIView {
             view.bottomAnchor.constraint(equalTo: valueView.bottomAnchor, constant: 0),
             view.trailingAnchor.constraint(equalTo: valueView.trailingAnchor, constant: 0),
         ])
+    }
+    
+    func keyVerticalCenter(_ b: Bool) {
+        if b {
+            keyToTop.isActive = false
+            keyAtCenter.isActive = true
+        } else {
+            keyToTop.isActive = true
+            keyAtCenter.isActive = false
+        }
     }
 }
