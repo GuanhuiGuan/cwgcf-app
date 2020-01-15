@@ -212,31 +212,40 @@ class EventViewController : VCWithScroll {
         registerButton.layer.cornerRadius = 5
         registerButton.layer.masksToBounds = true
         registerButton.titleLabel!.font = UIFont.systemFont(ofSize: 16)
+        registerButton.isEnabled = true
+        registerButton.addTarget(self, action: #selector(tapRegisterButton(_:)), for: .touchUpInside)
         
-        // TODO: investigate why not working
-        registerButton.addTarget(self, action: #selector(tapRegisterButton), for: .touchUpInside)
+        containerView.addSubview(buttonActivityIndicator)
+        buttonActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        buttonActivityIndicator.color = ghostWhite
+        buttonActivityIndicator.style = .medium
         
         NSLayoutConstraint.activate([
             registerButton.topAnchor.constraint(equalTo: eventDescriptionView.bottomAnchor, constant: 120),
             registerButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: 0),
             registerButton.heightAnchor.constraint(equalToConstant: 35),
             registerButton.widthAnchor.constraint(equalToConstant: 150),
+            
+            buttonActivityIndicator.centerXAnchor.constraint(equalTo: registerButton.centerXAnchor, constant: 0),
+            buttonActivityIndicator.centerYAnchor.constraint(equalTo: registerButton.centerYAnchor, constant: 0),
         ])
+        
+        updateContentSize(registerButton, constant: 120)
     }
     
-    @objc
-    func tapRegisterButton(_ sender: Any) {
+    @objc func tapRegisterButton(_ sender: Any) {
         registerButton.isEnabled = false
+        registerButton.setTitle("", for: .disabled)
         buttonActivityIndicator.startAnimating()
         
-        print("REGISTERED CHANGED: \(event.registered)")
-        
-        // Logic to update database and wait until response
-        event.registered = event.registered ? false : true
-        setButtonStyle(event.registered)
-        
-        self.registerButton.isEnabled = true
-        self.buttonActivityIndicator.stopAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            // Logic to update database and wait until response
+            self.event.registered = self.event.registered ? false : true
+            self.setButtonStyle(self.event.registered)
+            
+            self.registerButton.isEnabled = true
+            self.buttonActivityIndicator.stopAnimating()
+        }
     }
     
     private func setButtonStyle(_ registered: Bool) {
