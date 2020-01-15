@@ -163,6 +163,9 @@ class EventViewController : VCWithScroll {
             eventHostView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -40),
         ])
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapHosts(_:)))
+        eventHostView.addGestureRecognizer(tap)
+        
         updateContentSize(eventHostView, constant: 40)
     }
     
@@ -180,6 +183,9 @@ class EventViewController : VCWithScroll {
             eventAttendeesView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 40),
             eventAttendeesView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -40),
         ])
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapAttendees(_:)))
+        eventAttendeesView.addGestureRecognizer(tap)
         
         updateContentSize(eventAttendeesView, constant: 20)
     }
@@ -258,6 +264,20 @@ class EventViewController : VCWithScroll {
         }
     }
     
+    @objc
+    private func handleTapHosts(_ sender: Any) {
+        let vc = AttendeesViewController()
+        vc.profiles = event.hosts
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
+    private func handleTapAttendees(_ sender: Any) {
+        let vc = AttendeesViewController()
+        vc.profiles = event.attendees
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func loadData() {
         event.hosts = [
             Profile("", name: "", title: "", avatarUrl: "queen", description: ""),
@@ -267,9 +287,9 @@ class EventViewController : VCWithScroll {
         ]
         event.attendees = [
             Profile("", name: "", title: "", avatarUrl: "queen", description: ""),
+            Profile("", name: "", title: "", avatarUrl: "tracy_guan", description: ""),
             Profile("", name: "", title: "", avatarUrl: "charles", description: ""),
             Profile("", name: "", title: "", avatarUrl: "amy_zeng", description: ""),
-            Profile("", name: "", title: "", avatarUrl: "tracy_guan", description: ""),
         ]
         setupData()
     }

@@ -10,17 +10,19 @@ import Foundation
 
 class ProfileAPIClient {
     
-    func GetAllProfiles(){
+    func GetAllProfiles(completionHandler: @escaping (Result<[Profile], Error>) -> Void){
         let url = URL(string: mongoURL + "/profile")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                print("error: \(error)")
+                completionHandler(.failure(error))
             } else {
                 if let response = response as? HTTPURLResponse {
                     print("statusCode: \(response.statusCode)")
                 }
                 if let data = data {
-                    cacheProfiles = try! JSONDecoder().decode([Profile].self, from: data)
+                    let res = try? JSONDecoder().decode([Profile].self, from: data)
+                    completionHandler(.success(res ?? []))
+                    // cacheProfiles = try! JSONDecoder().decode([Profile].self, from: data)
                 }
             }
         }

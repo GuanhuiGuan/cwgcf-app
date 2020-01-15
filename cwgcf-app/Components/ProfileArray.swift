@@ -15,6 +15,8 @@ class ProfileArray : UIView {
     var avatarRadius : CGFloat!
     var numToShow : Int!
     
+    var navigationController = UINavigationController()
+    
     var arrayView = UIView()
     
     var ellipsisView = UIImageView()
@@ -31,11 +33,15 @@ class ProfileArray : UIView {
         self.numToShow = numToShow
         setupArray()
         setupEllipsis()
+        
+//        let tap = UITapGestureRecognizer(target: superclass, action: #selector(handleTap(_:)))
+//        addGestureRecognizer(tap)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
+        isUserInteractionEnabled = true
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +65,7 @@ class ProfileArray : UIView {
             if count >= numToShow {
                 break
             }
-            addProfile(imgUrl: profile.avatarUrl, count: count, defaultSystemUrl: "person.fill")
+            addProfile(profile: profile, count: count, defaultSystemUrl: "person.fill")
             count += 1
         }
         if profiles.count > numToShow {
@@ -73,6 +79,13 @@ class ProfileArray : UIView {
         setArrayElement(count: count, insertView: avatarView)
     }
     
+    private func addProfile(profile: Profile, count: Int, defaultSystemUrl: String) {
+        let avatarView = AvatarView(radius: avatarRadius, profile: profile, defaultSystemUrl: defaultSystemUrl, defaultTint: darkRed)
+        arrayView.addSubview(avatarView)
+        // avatarView.navigationController = navigationController
+        setArrayElement(count: count, insertView: avatarView)
+    }
+    
     private func setupEllipsis() {
         addSubview(ellipsisView)
         ellipsisView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +95,7 @@ class ProfileArray : UIView {
         ellipsisView.layer.masksToBounds = true
         NSLayoutConstraint.activate([
             ellipsisView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
-            ellipsisView.leadingAnchor.constraint(greaterThanOrEqualTo: arrayView.trailingAnchor, constant: 0),
+            ellipsisView.leadingAnchor.constraint(greaterThanOrEqualTo: arrayView.trailingAnchor, constant: -(10 + 2*eventProfileAvatarRadius*0.3)),
             ellipsisView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             ellipsisView.heightAnchor.constraint(equalToConstant: 2*eventProfileAvatarRadius*0.7),
             ellipsisView.widthAnchor.constraint(equalToConstant: 2*eventProfileAvatarRadius*0.7),
@@ -97,5 +110,13 @@ class ProfileArray : UIView {
             insertView.bottomAnchor.constraint(equalTo: arrayView.bottomAnchor, constant: 0),
             insertView.leadingAnchor.constraint(equalTo: arrayView.leadingAnchor, constant: offset),
         ])
+    }
+    
+    @objc
+    private func handleTap(_ sender: Any) {
+        print("Tapped")
+        let vc = ProfileViewController()
+        vc.profile = Profile("some", name: "Some one", title: "sfkejfaekl", avatarUrl: "queen", description: "eiwnvklj;i4oraf")
+        self.navigationController.pushViewController(vc, animated: true)
     }
 }

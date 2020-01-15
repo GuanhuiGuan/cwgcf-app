@@ -13,8 +13,8 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let client = ProfileAPIClient()
-        client.GetAllProfiles()
+        // let client = ProfileAPIClient()
+        // client.GetAllProfiles()
         
         // let forumViewController = ForumViewController()
         // forumViewController.loadData()

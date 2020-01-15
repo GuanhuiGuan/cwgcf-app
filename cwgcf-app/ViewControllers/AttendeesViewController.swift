@@ -11,6 +11,7 @@ import UIKit
 class AttendeesViewController : UITableViewController {
     
     var cellId = "ProfileCell"
+    var profiles : [Profile]! = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +23,12 @@ class AttendeesViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return cacheProfiles.count
+        return profiles.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ProfileCell
-        cell.profile = cacheProfiles[indexPath.row]
+        cell.profile = profiles[indexPath.row]
         cell.setCell()
         return cell
     }
@@ -35,7 +36,7 @@ class AttendeesViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         let vc = ProfileViewController()
-        vc.profile = cacheProfiles[indexPath.row]
+        vc.profile = profiles[indexPath.row]
         vc.modalPresentationStyle = .fullScreen
 //        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
@@ -43,7 +44,14 @@ class AttendeesViewController : UITableViewController {
     
     func loadCells() {
         let client = ProfileAPIClient()
-        client.GetAllProfiles()
-//        profiles = cacheProfiles
+        client.GetAllProfiles() { result in
+            switch result {
+            case .success(let ps):
+                self.profiles = ps
+            case .failure(let error):
+                print("Error retrieving profiles: \(error)")
+                self.profiles = []
+            }
+        }
     }
 }

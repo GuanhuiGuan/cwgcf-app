@@ -16,6 +16,8 @@ class StackEntryView : UIView {
     var keyToTop : NSLayoutConstraint!
     var keyAtCenter : NSLayoutConstraint!
     
+    var navigationController : UINavigationController?
+    
     convenience init(keyWidth: CGFloat, seperatorWidth: CGFloat, keyAlignCenter: Bool) {
         self.init(frame: .zero)
         keyView = UILabel()
@@ -23,7 +25,7 @@ class StackEntryView : UIView {
         keyView.translatesAutoresizingMaskIntoConstraints = false
         keyView.numberOfLines = 0
         
-        valueView = UILabel()
+        valueView = UIView()
         addSubview(valueView)
         valueView.translatesAutoresizingMaskIntoConstraints = false
         

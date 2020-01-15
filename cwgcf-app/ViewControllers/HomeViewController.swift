@@ -340,7 +340,9 @@ extension HomeViewController {
         let vc = AttendeesViewController()
         vc.loadCells()
         vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
